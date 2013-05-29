@@ -9,7 +9,7 @@
   <meta name="author" content="Tuz">
 
   
-  <meta name="description" content="技能脚本系统实现分析 Author: Tuz (&#121;&#111;&#117;&#x6e;&#x67;&#x74;&#114;&#x69;&#112;&#115;&#64;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;) Date: 05.20 &hellip;">
+  <meta name="description" content="Author: Tuz (&#x79;&#x6f;&#x75;&#x6e;&#103;&#116;&#114;&#x69;&#x70;&#115;&#x40;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;) Date: 05.20.2013 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -71,7 +71,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/logit/blog/2013/05/29/ability-analyze-report/">Ability_analyze_report</a></h1>
+      <h1 class="entry-title"><a href="/logit/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a></h1>
     
     
       <p class="meta">
@@ -94,9 +94,7 @@
   </header>
 
 
-  <div class="entry-content"><h1>技能脚本系统实现分析</h1>
-
-<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x79;&#x6f;&#x75;&#110;&#x67;&#116;&#114;&#105;&#x70;&#x73;&#64;&#109;&#97;&#x69;&#108;&#46;&#x63;&#111;&#x6d;">&#121;&#111;&#117;&#x6e;&#x67;&#x74;&#114;&#x69;&#112;&#115;&#64;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a>)</p>
+  <div class="entry-content"><p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#x79;&#x6f;&#117;&#x6e;&#x67;&#x74;&#114;&#105;&#112;&#115;&#x40;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#x79;&#x6f;&#x75;&#x6e;&#103;&#116;&#114;&#x69;&#x70;&#115;&#x40;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>)</p>
 
 <br>
 
@@ -153,13 +151,13 @@
 <h3 id="cpp_classess">技能C++层次类关系图</h3>
 
 
-<p><img src="classes_relation.png" alt="C++类关系图" /></p>
+<p><img src="images/ability-analyze-report/classes_relation.png" alt="C++类关系图" /></p>
 
 <h3 id="base_skill_proc">技能释放基本流程</h3>
 
 
 <p>技能释放由客户端输入驱动通过网络模块发送消息，服务器收到消息后查找到技能对应释放对象调用脚本系统执行对应技能的入口函数， 其执行过程如下序列图所示:
-<img src="ability_flow.png" alt="技能释放序列图" /></p>
+<img src="images/ability-analyze-report/ability_flow.png" alt="技能释放序列图" /></p>
 
 <h2 id="skill_mgr_lua">脚本层技能管理分析</h2>
 
@@ -211,21 +209,21 @@
 <ul>
 <li><p>发送命中伤害显示playHitVisToClient()</p>
 
-<p>  <img src="playHitVisToClient.png" alt="playHitVisToClient" /></p></li>
+<p>  <img src="images/ability-analyze-report/playHitVisToClient.png" alt="playHitVisToClient" /></p></li>
 <li><p>向客户端发送某目标免疫、闪避、抵抗的消息playStateInvalidToClient()</p>
 
-<p>  <img src="playStateInvalidToClient.png" alt="playStateInvalidToClient" /></p></li>
+<p>  <img src="images/ability-analyze-report/playStateInvalidToClient.png" alt="playStateInvalidToClient" /></p></li>
 <li><p>skillMessageToClient(主要是控制动作特效)skillMessageToClient()</p>
 
-<p>  <img src="skillMessageToClient.png" alt="skillMessageToClient" /></p></li>
+<p>  <img src="images/ability-analyze-report/skillMessageToClient.png" alt="skillMessageToClient" /></p></li>
 <li><p>消耗资源，同时发送相关显示消息给客户端resCostAndMsgToClient()</p>
 
-<p>  <img src="resCostAndMsgToClient.png" alt="resCostAndMsgToClient" /></p></li>
+<p>  <img src="images/ability-analyze-report/resCostAndMsgToClient.png" alt="resCostAndMsgToClient" /></p></li>
 </ul>
 </li>
 <li><p>数值计算模块中更新角色属性(playerAttCaculate).</p>
 
-<p> <img src="playerAttCaculate.png" alt="playerAttCaculate" /></p></li>
+<p> <img src="images/ability-analyze-report/playerAttCaculate.png" alt="playerAttCaculate" /></p></li>
 </ol>
 
 
@@ -243,7 +241,7 @@
 <p>  连续对前面扇形范围内全部敌人造成数次伤害，之后，对更大范围内敌人造成一次高伤害但自身有收招硬直的攻击</p></li>
 <li><p>序列图:</p>
 
-<p>  <img src="zhan_11002.png" alt="11003序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/zhan_11002.png" alt="11003序列图" /></p></li>
 </ul>
 
 
@@ -256,7 +254,7 @@
 <p>  前冲一小段距离，并连续打击周围的敌人，可再次点击热键来释放终结技</p></li>
 <li><p>序列图:</p>
 
-<p>  <img src="zhan_11003.png" alt="11003序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/zhan_11003.png" alt="11003序列图" /></p></li>
 </ul>
 
 
@@ -269,7 +267,7 @@
 <p>  技能施放后，战士发出一声怒吼，以自身为中心x格（暂定6）范围内敌人减速y%（暂定40%），持续z秒（暂定3</p></li>
 <li><p>时序图:</p>
 
-<p>  <img src="zhan_11004.png" alt="11003序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/zhan_11004.png" alt="11003序列图" /></p></li>
 </ul>
 
 
@@ -282,7 +280,7 @@
 <p>  对方向前冲，行径中对前面区域多次造成伤害并击退，击退距离和战每段冲刺距离一样，方向为被击退者对于战的方向。过程中再次热键释放终结技升龙劈</p></li>
 <li><p>时序图:</p>
 
-<p>  <img src="zhan_11005.png" alt="11005序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/zhan_11005.png" alt="11005序列图" /></p></li>
 </ul>
 
 
@@ -292,7 +290,7 @@
 <ul>
 <li><p>时序图:</p>
 
-<p>  <img src="zhan_11001.png" alt="11001序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/zhan_11001.png" alt="11001序列图" /></p></li>
 </ul>
 
 
@@ -310,7 +308,7 @@
 <p>  在出现选择框后可以再次点击该技能，选择框会出现些许形状变化，此操作用于区分真身位置，默认状况是残影前冲攻击，再次点击则是真身前冲残影留在原地</p></li>
 <li><p>时序图:</p>
 
-<p>  <img src="sheng_41002.png" alt="41002序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/sheng_41002.png" alt="41002序列图" /></p></li>
 </ul>
 
 
@@ -323,7 +321,7 @@
 <p>  出现方向的选择框并确认后，角色将朝选定的方向滑出，与角色呈120度夹角的另外2个方向会有2个残影以同样的姿势滑出</p></li>
 <li><p>时序图:</p>
 
-<p>  <img src="sheng_41003.png" alt="41003序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/sheng_41003.png" alt="41003序列图" /></p></li>
 </ul>
 
 
@@ -336,7 +334,7 @@
 <p> 按下快捷键，角色朝鼠标方向发动攻击，没按一次追加一次攻击，最多五次进入冷却时间（前面攻击长时间未按键也会进入冷却）,每次攻击会使目标定身1秒</p></li>
 <li><p>时序图:</p>
 
-<p>  <img src="sheng_41004.png" alt="41004序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/sheng_41004.png" alt="41004序列图" /></p></li>
 </ul>
 
 
@@ -349,7 +347,7 @@
 <p>  按键后出现锥形选择框, 选择方向后角色做出攻击准备姿势，在2秒后对区域发动沉重AOE攻击;同时圆形提示框内的残影会立即瞬移到箭头区域对区域内的敌人实施攻击，每个残影的攻击会使敌人昏迷0.5秒</p></li>
 <li><p>时序图:</p>
 
-<p>  <img src="sheng_41006.png" alt="41006序列图" /></p></li>
+<p>  <img src="images/ability-analyze-report/sheng_41006.png" alt="41006序列图" /></p></li>
 </ul>
 
 </div>
@@ -372,7 +370,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/logit/blog/2013/05/29/ability-analyze-report/">Ability_analyze_report</a>
+        <a href="/logit/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a>
       </li>
     
   </ul>
