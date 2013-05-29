@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://youngtrips.github.io/logit/sitemap.xml 
+Sitemap: http://logit.me/sitemap.xml 

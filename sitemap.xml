@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/05/29/ability-analyze-report/</loc>
+        <loc>http://logit.me/blog/2013/05/29/ability-analyze-report/</loc>
         <lastmod>2013-05-29T17:53:24+08:00</lastmod>
     </url>
     <url>
-        <loc>http://youngtrips.github.io/logit/blog/archives/</loc>
+        <loc>http://logit.me/blog/archives/</loc>
         <lastmod>2013-05-29T17:53:24+08:00</lastmod>
     </url>
     <url>
-        <loc>http://youngtrips.github.io/logit/robots.txt</loc>
+        <loc>http://logit.me/robots.txt</loc>
         <lastmod>2013-05-29T17:28:09+08:00</lastmod>
     </url>
     <url>
-        <loc>http://youngtrips.github.io/logit/</loc>
+        <loc>http://logit.me/</loc>
         <lastmod>2013-05-29T17:53:24+08:00</lastmod>
     </url>
 </urlset>
