@@ -4,7 +4,7 @@
   <title><![CDATA[log(1)]]></title>
   <link href="http://logit.me/atom.xml" rel="self"/>
   <link href="http://logit.me/"/>
-  <updated>2013-05-30T08:48:14+08:00</updated>
+  <updated>2013-05-30T08:54:50+08:00</updated>
   <id>http://logit.me/</id>
   <author>
     <name><![CDATA[Tuz]]></name>
@@ -18,7 +18,7 @@
     <link href="http://logit.me/blog/2013/05/29/ability-analyze-report/"/>
     <updated>2013-05-29T16:49:00+08:00</updated>
     <id>http://logit.me/blog/2013/05/29/ability-analyze-report</id>
-    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#x69;&#108;&#x74;&#111;&#58;&#121;&#x6f;&#x75;&#x6e;&#103;&#x74;&#114;&#105;&#x70;&#x73;&#x40;&#109;&#97;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#121;&#111;&#117;&#110;&#x67;&#x74;&#x72;&#105;&#x70;&#115;&#64;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a>)</p>
+    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#121;&#x6f;&#117;&#x6e;&#x67;&#116;&#114;&#105;&#112;&#115;&#x40;&#109;&#x61;&#105;&#108;&#46;&#x63;&#111;&#x6d;">&#121;&#x6f;&#x75;&#110;&#103;&#116;&#x72;&#x69;&#x70;&#115;&#64;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#109;</a>)</p>
 
 <br>
 
@@ -93,14 +93,19 @@
 </ol>
 
 
-<pre><code>
-    ClassAttTable = {
-        [11] = {MaxHpBase = 550, ArmorBase = 0, SpellResistanceBase = 0, PhysicalPowerBase = 10, CriticalRating = 0,
-                CriticalDamageIncrease = 1, ArmorPenetration = 0, ArmorPenetrationRatio = 0, AttackInterval = 900,
-                AttackTimeBase = 1.11, SpellPowerBase = 10, SpellPenetration = 0, SpellPenetrationRatio = 0, SpellCDReduce = 0,
-                MaxMpBase = 200, MpRecoverBase = 3, HpRecover = 5, SpellToughness = 0, HitProbability = 0, DodgeProbability = 0, ViewRange = 12},
-    }
-</code></pre>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'>    <span class="n">ClassAttTable</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>      <span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">MaxHpBase</span> <span class="o">=</span> <span class="mi">550</span><span class="p">,</span> <span class="n">ArmorBase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SpellResistanceBase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">PhysicalPowerBase</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">CriticalRating</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">CriticalDamageIncrease</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ArmorPenetration</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ArmorPenetrationRatio</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">AttackInterval</span> <span class="o">=</span> <span class="mi">900</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">AttackTimeBase</span> <span class="o">=</span> <span class="mf">1.11</span><span class="p">,</span> <span class="n">SpellPowerBase</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">SpellPenetration</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SpellPenetrationRatio</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SpellCDReduce</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">MaxMpBase</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">MpRecoverBase</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">HpRecover</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">SpellToughness</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">HitProbability</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DodgeProbability</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ViewRange</span> <span class="o">=</span> <span class="mi">12</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>目前该配置由策划填写的csv表格通过工具生成lua文件所得。</p>
