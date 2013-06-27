@@ -4,7 +4,7 @@
   <title><![CDATA[log(1)]]></title>
   <link href="http://logit.me/atom.xml" rel="self"/>
   <link href="http://logit.me/"/>
-  <updated>2013-06-27T12:59:08+08:00</updated>
+  <updated>2013-06-28T05:33:40+08:00</updated>
   <id>http://logit.me/</id>
   <author>
     <name><![CDATA[Tuz]]></name>
@@ -78,7 +78,20 @@
 </li>
 </ul>
 </li>
-<li>engine 服务器启动脚本文件统一装载, 技能引擎模块(流程管理, 封装技能公共函数), 玩家上下线处理过程</li>
+<li>engine 服务器启动脚本文件统一装载, 技能引擎模块(流程管理, 封装技能公共函数), 玩家上下线处理过程
+
+<ul>
+<li>init() 服务器启脚本系统初始化过程</li>
+<li>init_creature() 对象创建初始化过程</li>
+<li>on_player_online() 玩家上线处理过程</li>
+<li>on_player_offline() 玩家掉线处理过程</li>
+<li>add_skill() 对象添加技能</li>
+<li>del_skill() 对象删除技能</li>
+<li>update_skill() 升级对象技能</li>
+<li>add_talent() 对象添加天赋</li>
+<li>del_talent() 对象删除天赋</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -174,6 +187,14 @@
 <ol>
 <li>AttachInPT(uid)</li>
 <li>GetSkillProperty(skill_id, uid)</li>
+</ol>
+
+
+<p><strong>Question</strong></p>
+
+<ol>
+<li>对象ID使用GUID还是uid</li>
+<li>目前怪物没有uid</li>
 </ol>
 
 
@@ -382,6 +403,44 @@
 
 <p>在技能阶段过程中按消息产生的时间先后顺序将消息缓存起来, 在阶段结束时进行统一消息发送.</p>
 
+<p>消息格式:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>msg = {
+</span><span class='line'>        {event1, args1},
+</span><span class='line'>        {event2, args2},
+</span><span class='line'>        {event3, args3},
+</span><span class='line'>        ...
+</span><span class='line'>    }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>接口示例:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">// 缓存消息脚本接口, 将消息压入缓冲区</span>
+</span><span class='line'><span class="kt">void</span> <span class="nf">CacheMessage</span><span class="p">(</span><span class="k">const</span> <span class="n">CGUID</span> <span class="o">&amp;</span><span class="n">dst</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">args</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 开始发送消息接口, 从缓冲区取出消息发送并清空缓冲区</span>
+</span><span class='line'><span class="kt">void</span> <span class="n">SyncToCLT</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>Question</strong></p>
+
+<ul>
+<li>是否还继续采用table.marshal?</li>
+</ul>
+
+
 <h3>事件机制</h3>
 
 <p>将游戏逻辑中产生的游戏事件进行统一管理注册分发, 事件主要包括:</p>
@@ -391,8 +450,10 @@
 <li>对象濒死事件</li>
 <li>对象死亡事件</li>
 <li>碰撞事件</li>
+<li>离开事件</li>
 <li>开始移动事件</li>
 <li>停止移动事件</li>
+<li>对象切场景事件</li>
 </ol>
 
 
@@ -404,11 +465,13 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
+<span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">class</span> <span class="n">EventBox</span> <span class="p">{</span>
 </span><span class='line'><span class="nl">public:</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="n">Connect</span><span class="p">(</span><span class="n">EventType</span> <span class="n">ev</span><span class="p">);</span> <span class="c1">// 注册所关心的事件</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="nf">Signal</span><span class="p">(</span><span class="n">EventType</span> <span class="n">ev</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">args</span><span class="p">);</span>    <span class="c1">// 产生事件</span>
-</span><span class='line'>    <span class="kt">void</span> <span class="nf">Dispatch</span><span class="p">();</span> <span class="c1">//事件分发</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">Connect</span><span class="p">(</span><span class="n">EventType</span> <span class="n">ev</span><span class="p">);</span>                  <span class="c1">// 注册所关心的事件</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="nf">Disconnect</span><span class="p">(</span><span class="kt">int</span> <span class="n">eid</span><span class="p">);</span>                   <span class="c1">// 取消所关心的事件</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="nf">Signal</span><span class="p">(</span><span class="n">EventType</span> <span class="n">ev</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">args</span><span class="p">);</span>      <span class="c1">// 产生事件</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="nf">Dispatch</span><span class="p">();</span>                            <span class="c1">//事件分发</span>
 </span><span class='line'><span class="p">};</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -443,26 +506,6 @@
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
 </pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="c1">-- event object</span>
 </span><span class='line'><span class="n">event</span> <span class="o">=</span> <span class="p">{}</span>
 </span><span class='line'><span class="k">function</span> <span class="nf">event</span><span class="p">:</span><span class="n">new</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
@@ -470,7 +513,10 @@
 </span><span class='line'>    <span class="k">return</span> <span class="n">ev</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">-- 与C++交互事件的统一入口</span>
+</span><span class='line'><span class="c1">-- 事件映射</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">events</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 事件处理函数</span>
 </span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">connect</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
@@ -482,32 +528,15 @@
 </span><span class='line'>
 </span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">dispatch</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
 </span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- 技能模块事件管理</span>
-</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">skill</span><span class="p">.</span><span class="n">event</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class='line'>    <span class="n">events</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">-- 事件映射表</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">skill</span><span class="p">.</span><span class="n">connect</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">skill</span><span class="p">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">engine</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">skill</span><span class="p">.</span><span class="n">dispatch</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ev</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="k">do</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- creature模块事件管理</span>
-</span><span class='line'><span class="n">creature</span><span class="p">.</span><span class="n">event</span> <span class="o">=</span> <span class="p">{</span><span class="n">events</span> <span class="o">=</span> <span class="p">{}}</span>
-</span><span class='line'><span class="n">creature</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">connect</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">creature</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">creature</span><span class="p">.</span><span class="n">event</span><span class="p">.</span><span class="n">dispatch</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h3>其余问题</h3>
+
+<ol>
+<li>由于技能属性和BUFF属性挪到脚本层管理需要修改现有C++提供的相关接口;</li>
+<li>其余功能脚本(副本, 任务相关)管理;</li>
+</ol>
 
 ]]></content>
   </entry>
@@ -677,7 +706,7 @@
     <link href="http://logit.me/blog/2013/05/29/ability-analyze-report/"/>
     <updated>2013-05-29T16:49:00+08:00</updated>
     <id>http://logit.me/blog/2013/05/29/ability-analyze-report</id>
-    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#109;&#x61;&#x69;&#108;&#x74;&#x6f;&#58;&#x79;&#111;&#117;&#110;&#103;&#116;&#x72;&#x69;&#x70;&#115;&#64;&#x6d;&#97;&#105;&#x6c;&#x2e;&#99;&#111;&#109;">&#x79;&#111;&#x75;&#x6e;&#103;&#116;&#114;&#x69;&#112;&#115;&#x40;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;</a>)</p>
+    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#97;&#x69;&#108;&#116;&#x6f;&#x3a;&#x79;&#x6f;&#x75;&#110;&#x67;&#x74;&#114;&#x69;&#x70;&#115;&#x40;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#x79;&#111;&#117;&#x6e;&#x67;&#x74;&#x72;&#105;&#x70;&#115;&#x40;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>)</p>
 
 <br>
 
