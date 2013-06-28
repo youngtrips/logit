@@ -292,7 +292,7 @@
 
 <ol>
 <li>Enter阶段: 每个技能实例的唯一入口, 如果技能正在执行中则调用技能实例事件处理, 否则进行施法前判定并进行吟唱;</li>
-<li>Fire阶段: 吟唱正常结束后进入的技能执行阶段, 该阶段控制技能实例在不同执行阶段的切换;</li>
+<li>Fire阶段: 吟唱正常结束后进入的技能执行阶段, 该阶段控制技能实例在不同执行子阶段的切换;</li>
 <li>End阶段: 技能结束阶段, 执行技能清理工作, 该阶段回调技能实例onEnd执行技能实例结束处理;</li>
 </ol>
 
@@ -372,7 +372,7 @@
 </span><span class='line'>                <span class="kd">local</span> <span class="n">onTimeout</span> <span class="o">=</span> <span class="k">function</span> <span class="nf">Fire</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="k">end</span>
 </span><span class='line'>                <span class="kd">local</span> <span class="n">onInterrupt</span> <span class="o">=</span> <span class="k">function</span> <span class="nf">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="k">end</span>
 </span><span class='line'>                <span class="n">Incant</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">skill</span><span class="p">.</span><span class="n">props</span><span class="p">.</span><span class="n">incantTime</span><span class="p">,</span> <span class="n">onTimeout</span><span class="p">,</span> <span class="n">onInterrupt</span><span class="p">)</span>
-</span><span class='line'>                <span class="n">SyncToCLT</span><span class="p">()</span> <span class="c1">-- sync to client</span>
+</span><span class='line'>                <span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span> <span class="c1">-- sync message to client</span>
 </span><span class='line'>            <span class="k">end</span>
 </span><span class='line'>        <span class="k">end</span>
 </span><span class='line'>    <span class="k">end</span>
@@ -388,11 +388,11 @@
 </span><span class='line'>        <span class="kd">local</span> <span class="n">ontick</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
 </span><span class='line'>            <span class="kd">local</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">stage</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
 </span><span class='line'>            <span class="k">if</span> <span class="n">ret</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">then</span> <span class="c1">-- 转到下一个阶段</span>
-</span><span class='line'>                <span class="n">SyncToCLT</span><span class="p">()</span>
+</span><span class='line'>                <span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span> <span class="c1">-- sync message to client</span>
 </span><span class='line'>                <span class="n">Fire</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">ret</span><span class="p">)</span>
 </span><span class='line'>                <span class="k">return</span> <span class="kc">false</span>
 </span><span class='line'>            <span class="k">else</span>            <span class="c1">-- 转到结束阶段</span>
-</span><span class='line'>                <span class="n">SyncToCLT</span><span class="p">()</span>
+</span><span class='line'>                <span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span> <span class="c1">-- sync message to client</span>
 </span><span class='line'>                <span class="n">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
 </span><span class='line'>                <span class="k">return</span> <span class="kc">false</span>
 </span><span class='line'>            <span class="k">end</span>
@@ -405,7 +405,7 @@
 </span><span class='line'><span class="k">function</span> <span class="nf">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
 </span><span class='line'>    <span class="kd">local</span> <span class="n">skill</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">skill</span>
 </span><span class='line'>    <span class="n">skill</span><span class="p">.</span><span class="n">onEnd</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">SyncToCLT</span><span class="p">()</span>
+</span><span class='line'>    <span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span> <span class="c1">-- sync message to client</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -417,9 +417,13 @@
 <ul>
 <li>onEnter: 吟唱前技能实例自定义过程, 返回false终止技能的执行;</li>
 <li>onEnd: 技能实例结束处理阶段;</li>
-<li>onFire: 技能执行阶段表, 该表中配置技能执行中的各个子阶段; 每个子阶段由begin, update, handleEvent三个函数组成, 分别表示子阶段开始的处理, 子阶段循环处理过程及子阶段事件处理过程; 子阶段配置格式为:</li>
+<li>onFire: 技能执行阶段表, 该表中配置技能执行中的各个子阶段; 每个子阶段由begin, update, handleEvent三个函数组成, 分别表示子阶段开始的处理, 子阶段循环处理过程及子阶段事件处理过程;</li>
 </ul>
 
+
+<p>子阶段定义: 根据客户端输入事件划分的不同的技能执行过程, 例如战士的连刺可以划分为第一个阶段是普通Q过程, 第二个阶段是终结技阶段。</p>
+
+<p>子阶段配置格式为:</p>
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -489,7 +493,7 @@
 
 <h3>消息同步机制</h3>
 
-<p>在技能阶段过程中按消息产生的时间先后顺序将消息缓存起来, 在阶段结束时进行统一消息发送.</p>
+<p>在技能阶段过程中按消息产生的时间先后顺序将消息缓存在lua层中, 在阶段结束时调用C++接口进行统一发送.</p>
 
 <p>消息格式:</p>
 
@@ -500,33 +504,47 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>msg = {
-</span><span class='line'>        {event1, args1},
-</span><span class='line'>        {event2, args2},
-</span><span class='line'>        {event3, args3},
+</span><span class='line'>        {key1 = value1},
+</span><span class='line'>        {key2 = value2},
+</span><span class='line'>        {key3 = value3},
 </span><span class='line'>        ...
 </span><span class='line'>    }</span></code></pre></td></tr></table></div></figure>
 
 
-<p>接口示例:</p>
+<p>代码示例:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">// C++发送消息接口</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 
 <figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">// 缓存消息脚本接口, 将消息压入缓冲区</span>
-</span><span class='line'><span class="kt">void</span> <span class="nf">CacheMessage</span><span class="p">(</span><span class="k">const</span> <span class="n">CGUID</span> <span class="o">&amp;</span><span class="n">dst</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">args</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// 开始发送消息接口, 从缓冲区取出消息发送并清空缓冲区</span>
-</span><span class='line'><span class="kt">void</span> <span class="n">SyncToCLT</span><span class="p">()</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="c1">-- lua 层消息缓存及发送</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}}</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">push</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">item</span> <span class="o">=</span> <span class="p">{[</span><span class="n">event_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">}</span>
+</span><span class='line'>    <span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">[</span><span class="n">dst</span><span class="p">]</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">[</span><span class="n">dst</span><span class="p">]</span> <span class="ow">or</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="nb">table.insert</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">[</span><span class="n">dst</span><span class="p">],</span> <span class="n">item</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">SendMessage</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">self</span><span class="p">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
-<p><strong>Question</strong></p>
-
-<ul>
-<li>是否还继续采用table.marshal?</li>
-</ul>
 
 
 <h3>事件机制</h3>
