@@ -134,7 +134,7 @@
 </ul>
 </li>
 <li>engine (技能框架,控制技能实例的运行及包含技能的公共函数等)</li>
-<li>lib (与具体游戏逻辑无关的公共库模块,包括基本计算几何计算等)</li>
+<li>lib (与具体游戏逻辑无关的公共库模块,包括基本计算几何计算, 数据结构及基本算法等)</li>
 <li>skill (各个技能实例执行逻辑文件)</li>
 <li>buff (各个BUFF实例执行逻辑文件)</li>
 <li>talent (各个天赋实例执行逻辑)</li>
@@ -552,7 +552,21 @@
 
 <h3>事件机制</h3>
 
-<p>将游戏逻辑中产生的游戏事件进行统一管理注册分发, 事件主要包括:</p>
+<p>联系是普遍存在的, 事件是事与事或对象与对象之间的相关关系, 在游戏中亦是如此, 比如玩家攻击怪物, 玩家与玩家发生碰撞等, 这些过程可以抽象为:</p>
+
+<p><img src="/images/ability-design/event_model.png" alt="event_model" /></p>
+
+<p>其中:</p>
+
+<ol>
+<li>事件源表示任何产生事件的对象, 比如玩家, 怪物或者飞弹等;</li>
+<li>事件表示任何可以处理的事件, 比如攻击, 眩晕或者碰撞等;</li>
+<li>响应者表示任何关注某种事件的对象;</li>
+<li>响应器表示对其关注事件的处理;</li>
+</ol>
+
+
+<p>我们可以将游戏中的事件主要划分为:</p>
 
 <ol>
 <li>定时器事件</li>
@@ -563,6 +577,8 @@
 <li>开始移动事件</li>
 <li>停止移动事件</li>
 <li>对象切场景事件</li>
+<li>玩家上线事件</li>
+<li>玩家下线事件</li>
 </ol>
 
 
@@ -575,6 +591,19 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
 </pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">class</span> <span class="n">EventBox</span> <span class="p">{</span>
 </span><span class='line'><span class="nl">public:</span>
 </span><span class='line'>    <span class="kt">int</span> <span class="n">Connect</span><span class="p">(</span><span class="n">EventType</span> <span class="n">ev</span><span class="p">);</span>                  <span class="c1">// 注册所关心的事件</span>
@@ -582,12 +611,25 @@
 </span><span class='line'>    <span class="kt">void</span> <span class="nf">Signal</span><span class="p">(</span><span class="n">EventType</span> <span class="n">ev</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">args</span><span class="p">);</span>      <span class="c1">// 产生事件</span>
 </span><span class='line'>    <span class="kt">void</span> <span class="nf">Dispatch</span><span class="p">();</span>                            <span class="c1">//事件分发</span>
 </span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 脚本接口</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 注册事件</span>
+</span><span class='line'><span class="c1">// 参数</span>
+</span><span class='line'><span class="c1">// ev 事件对象表(lua表), 包含事件类型, 事件参数, 事件源对象id</span>
+</span><span class='line'><span class="c1">// 返回值:</span>
+</span><span class='line'><span class="c1">// 成功返回事件id, 失败返回-1</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">event_connect</span><span class="p">(</span><span class="n">ev</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 取消注册事件</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">event_disconnect</span><span class="p">(</span><span class="n">event_id</span><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
 <h4>Lua层事件管理结构</h4>
 
-<p>脚本层中事件采用分级管理, 技能模块中管理技能中产生及所关注的事件, creature模块中管理对象产生及所关注的事件, 管理结构及事件注册分发过程如下图所示:</p>
+<p>在脚本中通过engine.connect()和engine.disconnect()进行统一的事件注册及取消注册, 当事件派发时, C++统一调用egine.dispatch传人所有触发的事件, engine.dispatch进行统一的事件分发.</p>
 
 <p><img src="/images/ability-design/eventbox2.png" alt="EventBox" /></p>
 
@@ -615,27 +657,51 @@
 <span class='line-number'>20</span>
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
 </pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="c1">-- event object</span>
 </span><span class='line'><span class="n">event</span> <span class="o">=</span> <span class="p">{}</span>
-</span><span class='line'><span class="k">function</span> <span class="nf">event</span><span class="p">:</span><span class="n">new</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
-</span><span class='line'>    <span class="kd">local</span> <span class="n">ev</span> <span class="o">=</span> <span class="p">{</span><span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">,</span> <span class="n">cb</span> <span class="o">=</span> <span class="n">cb</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">}</span>
+</span><span class='line'><span class="k">function</span> <span class="nf">event</span><span class="p">:</span><span class="n">new</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">src_obj</span><span class="p">,</span> <span class="n">dst_obj</span><span class="p">,</span> <span class="n">stage</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">ev</span> <span class="o">=</span> <span class="p">{</span><span class="n">id</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+</span><span class='line'>                <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">src_obj</span> <span class="o">=</span> <span class="n">src_obj</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">dst_obj</span> <span class="o">=</span> <span class="n">dst_obj</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">list_node</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="c1">-- 双向链表结点方便从事件槽中删除事件</span>
+</span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">ev</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="c1">-- 事件映射</span>
+</span><span class='line'><span class="c1">-- 事件映射 ID ==&gt; eventObj</span>
 </span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">events</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'><span class="c1">-- event_type ==&gt; eventObj</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">event_slots</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">-- dlist</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">-- 事件处理函数</span>
-</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">connect</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">connect</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">src_obj</span><span class="p">,</span> <span class="n">dst_obj</span><span class="p">,</span> <span class="n">stage</span><span class="p">)</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">disconnect</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">event_id</span><span class="p">)</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">signal</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span> <span class="n">interval</span><span class="p">,</span> <span class="k">repeat</span><span class="p">,</span> <span class="n">delay</span><span class="p">)</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">dispatch</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">ev</span><span class="p">)</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">signal</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">src_obj</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">dispatch</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -902,7 +968,7 @@
   </header>
 
 
-  <div class="entry-content"><p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#121;&#111;&#x75;&#110;&#x67;&#x74;&#x72;&#x69;&#112;&#115;&#x40;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;">&#121;&#111;&#x75;&#x6e;&#103;&#116;&#114;&#105;&#112;&#115;&#x40;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a>)</p>
+  <div class="entry-content"><p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#111;&#58;&#121;&#x6f;&#x75;&#110;&#x67;&#116;&#x72;&#x69;&#112;&#115;&#x40;&#x6d;&#x61;&#x69;&#x6c;&#46;&#99;&#x6f;&#109;">&#121;&#x6f;&#x75;&#x6e;&#x67;&#116;&#114;&#x69;&#x70;&#x73;&#x40;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>)</p>
 
 <br>
 
