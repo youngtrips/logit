@@ -150,9 +150,18 @@
 
 <p><strong>行为树实现</strong></p>
 
-<pre><code>Behavior = {
-    on_enter = function() end,
-    on_exit = function() end,
+<pre><code>Task = {
+    update = function(args) end,
+    on_enter = function(args) end,
+    on_exit = function(args) end,
+}
+BehaviorNode = {
+    nodes = {},
+    status = 0,
+    task = nil,
+    tick = function(args)
+        return task:update(args)
+    end,
 }
 BehaviorTree = {
     object = nil,
