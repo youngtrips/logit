@@ -4,7 +4,7 @@
   <title><![CDATA[log(1)]]></title>
   <link href="http://logit.me/atom.xml" rel="self"/>
   <link href="http://logit.me/"/>
-  <updated>2013-10-12T10:38:57+08:00</updated>
+  <updated>2013-10-15T06:14:32+08:00</updated>
   <id>http://logit.me/</id>
   <author>
     <name><![CDATA[Tuz]]></name>
@@ -128,9 +128,21 @@ end
 <p><img src="http://logit.me/images/game-ai-design/ai_module.png" alt="AI Module" /></p>
 
 <ul>
-<li>INPUT，AI输入数据</li>
+<li>INPUT，AI输入数据，由游戏中产生的各种事件构成，主要有:
+
+<ol>
+<li> 碰撞事件</li>
+<li> 技能事件</li>
+</ol>
+</li>
 <li>AI Module，由行为树组成的AI决策模块；</li>
-<li>AI输出，AI决策结果，例如移动、使用技能等；</li>
+<li>AI输出，AI决策结果，主要有:
+
+<ol>
+<li> 移动: 请求移动模块移动到目标点</li>
+<li> 技能模块: 通过creature:use_skill(args)直接使用技能</li>
+</ol>
+</li>
 </ul>
 
 
@@ -947,7 +959,7 @@ end
     <link href="http://logit.me/blog/2013/05/29/ability-analyze-report/"/>
     <updated>2013-05-29T16:49:00+08:00</updated>
     <id>http://logit.me/blog/2013/05/29/ability-analyze-report</id>
-    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#121;&#x6f;&#x75;&#110;&#x67;&#116;&#114;&#105;&#x70;&#115;&#x40;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#x6f;&#x6d;">&#121;&#x6f;&#117;&#x6e;&#x67;&#x74;&#x72;&#105;&#112;&#115;&#x40;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a>)</p>
+    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x79;&#x6f;&#x75;&#110;&#x67;&#x74;&#x72;&#105;&#x70;&#115;&#64;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x79;&#x6f;&#x75;&#110;&#x67;&#116;&#x72;&#105;&#112;&#115;&#x40;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>)</p>
 
 <br>
 
