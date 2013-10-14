@@ -4,7 +4,7 @@
   <title><![CDATA[log(1)]]></title>
   <link href="http://logit.me/atom.xml" rel="self"/>
   <link href="http://logit.me/"/>
-  <updated>2013-10-15T06:14:32+08:00</updated>
+  <updated>2013-10-15T06:44:44+08:00</updated>
   <id>http://logit.me/</id>
   <author>
     <name><![CDATA[Tuz]]></name>
@@ -76,6 +76,23 @@
 
 
 <p>当AI决策时从树的根节点自顶向下(depth-first search)，通过一些条件搜索这棵树，最终确定需要的行为（叶子节点），并执行相应动作。</p>
+
+<p><strong>行为树实现</strong></p>
+
+<pre><code>Behavior = {
+    on_enter = function() end,
+    on_exit = function() end,
+}
+BehaviorTree = {
+    object = nil,
+    root = nil,
+    tick = function(args)
+        if root then
+            root:tick(args)
+        end
+    end,
+}
+</code></pre>
 
 <p>之前巡逻小怪AI用行为树可以表示为:</p>
 
@@ -959,7 +976,7 @@ end
     <link href="http://logit.me/blog/2013/05/29/ability-analyze-report/"/>
     <updated>2013-05-29T16:49:00+08:00</updated>
     <id>http://logit.me/blog/2013/05/29/ability-analyze-report</id>
-    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#x3a;&#x79;&#x6f;&#x75;&#110;&#x67;&#x74;&#x72;&#105;&#x70;&#115;&#64;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#x6d;">&#x79;&#x6f;&#x75;&#110;&#x67;&#116;&#x72;&#105;&#112;&#115;&#x40;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>)</p>
+    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#97;&#x69;&#108;&#x74;&#x6f;&#x3a;&#121;&#111;&#x75;&#x6e;&#103;&#x74;&#114;&#x69;&#x70;&#115;&#x40;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;">&#121;&#x6f;&#117;&#x6e;&#x67;&#x74;&#114;&#105;&#x70;&#x73;&#x40;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>)</p>
 
 <br>
 

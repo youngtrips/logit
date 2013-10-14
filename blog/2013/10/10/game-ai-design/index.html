@@ -148,6 +148,23 @@
 
 <p>当AI决策时从树的根节点自顶向下(depth-first search)，通过一些条件搜索这棵树，最终确定需要的行为（叶子节点），并执行相应动作。</p>
 
+<p><strong>行为树实现</strong></p>
+
+<pre><code>Behavior = {
+    on_enter = function() end,
+    on_exit = function() end,
+}
+BehaviorTree = {
+    object = nil,
+    root = nil,
+    tick = function(args)
+        if root then
+            root:tick(args)
+        end
+    end,
+}
+</code></pre>
+
 <p>之前巡逻小怪AI用行为树可以表示为:</p>
 
 <p><img src="/images/game-ai-design/behavior_tree_2.png" alt="behavior_tree_2" /></p>
