@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://logit.me/sitemap.xml 
