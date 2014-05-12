@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-My Octopress Page is coming soon &hellip;
-=======
 
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
@@ -12,11 +9,7 @@ My Octopress Page is coming soon &hellip;
   <meta name="author" content="Tuz">
 
   
-  <meta name="description" content="2013 游戏AI模块设计
-Oct 10 2013 技能脚本系统设计
-Jun 24 2013 Parsing CSV files in Lua
-Jun 03 2013 posted in lua ssh+nginx反向代理访问内网Web Service
-May 31 2013 posted in &hellip;">
+  <meta name="description" content="概述 针对当前新的怪物AI需求，简化怪物AI脚本编写，提高怪物AI运行效率，抽象出AI框架结构，增强框架的灵活性及扩展性，同时能够让设计人员快速的开发怪物AI。 需求 相对之前的怪物AI，当前新怪物AI相对比较简单，主要是由移动、攻击等基本行为组成的。 AI实现方式 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -25,7 +18,7 @@ May 31 2013 posted in &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://logit.me">
+  <link rel="canonical" href="http://youngtrips.github.io/logit">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="log(1)" type="application/atom+xml">
@@ -55,96 +48,1627 @@ May 31 2013 posted in &hellip;">
 
 <body   >
   <header role="banner"><hgroup>
-  <div id="header-inner">
-    <span class="first"><a href="/">log(1)</a></span>
-    <span><a href="/about">about</a></span>
-    <span><a href="http://github.com/youngtrips">projects</a></span>
-    <span class="last"><a href="/atom.xml" title="subscribe via RSS">rss</a></span>
-  </div>
+  <h1><a href="/">log(1)</a></h1>
+  
+    <h2>somewhere to keep mind</h2>
+  
 </hgroup>
 
 </header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:youngtrips.github.io/logit" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
   <div id="main">
     <div id="content">
-      <div>
-
-<article role="article">
-<div id="blog-archives">
-  
-
+      <div class="blog-index">
   
   
+  
+    <article>
+      
+  <header>
     
-    <h2>2013</h2>
-  
-    <article>
-      
-<h1><a href="/blog/2013/10/10/game-ai-design/">游戏AI模块设计</a></h1>
-<time datetime="2013-10-10T11:11:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>10</span> <span class='year'>2013</span></time>
+      <h1 class="entry-title"><a href="/blog/2013/10/10/game-ai-design/">游戏AI模块设计</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-    </article>
-  
-
-  
-  
-    <article>
-      
-<h1><a href="/blog/2013/06/24/ability-system-design/">技能脚本系统设计</a></h1>
-<time datetime="2013-06-24T08:59:00+08:00" pubdate><span class='month'>Jun</span> <span class='day'>24</span> <span class='year'>2013</span></time>
 
 
-    </article>
+
+
+
+
   
 
-  
-  
-    <article>
-      
-<h1><a href="/blog/2013/06/03/lua-csv/">Parsing CSV files in Lua</a></h1>
-<time datetime="2013-06-03T16:14:00+08:00" pubdate><span class='month'>Jun</span> <span class='day'>03</span> <span class='year'>2013</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/lua/'>lua</a></span>
-</footer>
+<time datetime="2013-10-10T11:11:00+08:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/10/10/game-ai-design/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
 
 
-    </article>
-  
+  <div class="entry-content"><h3>概述</h3>
 
-  
-  
-    <article>
-      
-<h1><a href="/blog/2013/05/31/reverse-proxy/">ssh+nginx反向代理访问内网Web Service</a></h1>
-<time datetime="2013-05-31T14:14:00+08:00" pubdate><span class='month'>May</span> <span class='day'>31</span> <span class='year'>2013</span></time>
+<p>针对当前新的怪物AI需求，简化怪物AI脚本编写，提高怪物AI运行效率，抽象出AI框架结构，增强框架的灵活性及扩展性，同时能够让设计人员快速的开发怪物AI。</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/misc/'>misc</a></span>
-</footer>
+<h3>需求</h3>
 
+<p>相对之前的怪物AI，当前新怪物AI相对比较简单，主要是由移动、攻击等基本行为组成的。</p>
 
-    </article>
-  
+<h3>AI实现方式</h3>
 
-  
-  
-    <article>
-      
-<h1><a href="/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a></h1>
-<time datetime="2013-05-29T16:49:00+08:00" pubdate><span class='month'>May</span> <span class='day'>29</span> <span class='year'>2013</span></time>
+<p>游戏中怪物AI的现有设计方法主要有：</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/game/'>game</a></span>
-</footer>
+<ol>
+<li>直接编码，或者给每个特定的怪物挂特定的脚本，当前我们游戏中很大一部分就是这样实现的；</li>
+<li>有限状态机(FSM)， 怪物在若干个状态中根据游戏世界中产生的特定事件产生特定的游戏行为，同时怪物进入新的状态；</li>
+<li>行为树(Behavior Tree)，怪物AI由若干个类型节点组成的树形结构，每个节点含有前置条件，当前置条件满足时执行该节点；</li>
+</ol>
 
 
-    </article>
-  
+<p>由于直接给每个怪物挂脚本的形式对于AI开发人员来说工作量繁琐，并且容易造成重复性劳动，下面主要阐述下有限状态机及行为树。</p>
+
+<h4>有限状态机</h4>
+
+<p>有限状态机（finite-state machine， 缩写： FSM）又称有限状态自动机，简称状态机，是表示有限个状态以及在这些状态之间的转移和动作等行为的数学模型，一个有限状态机可以用一个关系式描述:</p>
+
+<pre><code>State(S) x Event(E) -&gt; Action(A), State(NS)
+</code></pre>
+
+<p>这些关系解析如下：如果我们处于状态S并且事件E发生了，那么我们需要执行动作A，并且状态转换为NS。</p>
+
+<p>当前游戏中怪物AI很大部分是基于FSM实现的，例如一个巡逻小怪的AI可以表示为:</p>
+
+<p><img src="/images/game-ai-design/fsm.png" alt="FSM" /></p>
+
+<h4>行为树</h4>
+
+<p>行为树(Behavior Tree, <a href="http://en.wikipedia.org/wiki/Behavior_tree">see</a>)，顾名思义，它是由若干个子节点组成的树形结构，如下图所示:</p>
+
+<p><img src="/images/game-ai-design/behavior_tree_1.png" alt="BehaviorTreeExample" /></p>
+
+<p>其中叶子节点为行为节点，行为节点是游戏相关的，不同的游戏可以定义不同的行为节点，行为节点通常分为两种允许状态:</p>
+
+<ol>
+<li>运行中(Running)，该行为还在处理中;</li>
+<li>完成(Finished)，该行为处理完成；</li>
+</ol>
+
+
+<p>其余节点是控制节点, 我们可以为行为树定义各种各样的控制节点（这也是行为树有意思的地方之一），一般来说，常用的控制节点有以下三种</p>
+
+<ol>
+<li>选择(Selector), 选择其子节点的某一个执行;</li>
+<li>序列(Sequence), 将其所有子节点依次执行, 也就是说当前一个返回&#8221;完成&#8221;状态后，再运行先一个子节点;</li>
+<li>并行(Parallel), 将其所有子节点都运行一遍;</li>
+</ol>
+
+
+<p>当AI决策时从树的根节点自顶向下(depth-first search)，通过一些条件搜索这棵树，最终确定需要的行为（叶子节点），并执行相应动作。</p>
+
+<p><strong>行为树实现</strong></p>
+
+<pre><code>Task = {
+    update = function(args) end,
+    on_enter = function(args) end,
+    on_exit = function(args) end,
+}
+BehaviorNode = {
+    nodes = {},
+    status = 0,
+    task = nil,
+    tick = function(args)
+        return task:update(args)
+    end,
+}
+BehaviorTree = {
+    object = nil,
+    root = nil,
+    tick = function(args)
+        if root then
+            root:tick(args)
+        end
+    end,
+}
+</code></pre>
+
+<p>之前巡逻小怪AI用行为树可以表示为:</p>
+
+<p><img src="/images/game-ai-design/behavior_tree_2.png" alt="behavior_tree_2" /></p>
+
+<p><strong>如何选择子节点</strong></p>
+
+<p>如何从子节点中选择呢？选择的依据是什么呢？这里就要引入另一个概念，一般称之为前置条件或者前提（Precondition），每一个节点，不管是行为节点还是控制节点，都会包含一个前提的部分，如下所示:</p>
+
+<pre><code>-- lua code
+local behavior_node = {
+    precondition = function() return true end,
+    action = function()
+        -- do something
+    end,
+}
+</code></pre>
+
+<p>当自顶向下搜索行为树时，依次测试每个子节点的前提，如果满足则进入该子节点，以此继续选择下一个节点，最终返回某个行为节点，所以当前行为节点的前提可以表示为:</p>
+
+<pre><code>Precondition[CurrNode] = Precondition[CurrNode.Parent] and Precondition[CurrNode.Parent.Parent] and ... and Precondition[RootNode]
+</code></pre>
+
+<p>行为树就是通过行为节点，控制节点，以及每个节点上的前提，把整个AI的决策逻辑描述了出来，对于每次的Tick，可以用如下的流程来描述：</p>
+
+<pre><code>action = root.FindNextAction(input)
+if action is not empty then
+    action.Execute(request,  input)  --request是输出的请求
+else
+    print "no action is available"
+end
+</code></pre>
+
+<p>与有限状态机比起来，行为树结构还是比较简单的，而且当从概念上来说，行为树还是比较简单的，但对AI程序员来说，却是充满了吸引力，它的一些特性，比如可视化的决策逻辑，可复用的控制节点，逻辑和实现的低耦合等，较之传统的状态机，都是可以大大帮助我们迅速而便捷的组织我们的行为决策。根据行为树的可视化的决策逻辑的特性可以开发出类似流程图绘制的编辑器，通过拖拽的方式定制怪物AI逻辑、编写各个节点的前提脚步及行为节点的游戏逻辑，同时能够导出lua脚本。</p>
+
+<p>关于行为树更加详细的解释见<a href="http://www.aisharing.com/archives/90">这里</a></p>
+
+<p><strong>目前使用行为树的游戏</strong></p>
+
+<ol>
+<li>Halo 3 &amp; ODST</li>
+<li>League of Legends <a href="/assets/upload/Woo_Andrew_PuttingThePlaneTogetherMidair.pdf">参考幻灯片</a></li>
+</ol>
+
+
+<h3>AI模块设计</h3>
+
+<p>AI模块作为一个黑盒，依赖特定的输入进行决策再输出特定的请求，整体结构如下图所示:</p>
+
+<p><img src="/images/game-ai-design/ai_module.png" alt="AI Module" /></p>
+
+<ul>
+<li>INPUT，AI输入数据，由游戏中产生的各种事件构成，主要有:
+
+<ol>
+<li> 碰撞事件</li>
+<li> 技能事件</li>
+</ol>
+</li>
+<li>AI Module，由行为树组成的AI决策模块；</li>
+<li>AI输出，AI决策结果，主要有:
+
+<ol>
+<li> 移动: 请求移动模块移动到目标点</li>
+<li> 技能模块: 通过creature:use_skill(args)直接使用技能</li>
+</ol>
+</li>
+</ul>
+
+
+<h3>Lua脚本集成</h3>
+
+<p>行为树每个节点的前提(Precondition)，进入、退出、动作等是游戏相关性的，将这些与游戏逻辑紧密相关的部分使用lua脚本实现，每个行为树节点表示为：</p>
+
+<pre><code>follow_base = {
+    precondition = function()
+        -- check condition
+    end,
+    behavior = function()
+        -- do something
+    end,
+    on_enter = function()
+        -- do something
+    end,
+    on_exit = function()
+        -- do something
+    end,
+}
+</code></pre>
+
+<h3>行为树编辑器</h3>
+
+<p>实现类似如下可视化AI行为树编辑器:</p>
+
+<ol>
+<li>From &ldquo;Three Ways of Cultivating Game AI&rdquo;
+ <img src="/images/game-ai-design/editor1.png" alt="BehaviorEditor1" /></li>
+<li>A plugin for Unity Editor
+ <img src="/images/game-ai-design/editor2.png" alt="BehaviorEditor2" /></li>
+<li>CryENGINE 3
+ <img src="/images/game-ai-design/editor3.png" alt="BehaviorEditor3" /></li>
+</ol>
+
 </div>
-</article>
-</div>
+  
+  
 
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/24/ability-system-design/">技能脚本系统设计</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-24T08:59:00+08:00" pubdate data-updated="true">Jun 24<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/24/ability-system-design/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>概述</h3>
+
+<p>针对现有技能系统发送消息过大, C++和lua交互频繁, 客户端功能服务器化, 触发器抽象粒度太小, 数据更新同步等问题进行脚本系统重构优化. 通过分析现有技能实现抽象出技能框架(技能引擎), 实现控制基本技能流程, 同时加入事件进制, 如攻击, 受伤等事件, 进而希望能够丰富技能同时使天赋的实现比较优雅.</p>
+
+<h3>技能系统文件组织结构</h3>
+
+<ul>
+<li>data (配置文件所在)
+
+<ul>
+<li>skill (技能实例配置)</li>
+<li>buff (BUFF实例配置)</li>
+<li>talent (天赋实例配置)</li>
+<li>metadata (基本数据/元数据配置)
+
+<ul>
+<li>chapion.lua (各个职业基本数值配置)</li>
+<li>monster.lua (各个类别怪物基本数值配置)</li>
+<li>level.lua  (职业等级基本数值配置)</li>
+<li>skill.lua  (各个技能基本数值配置)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>engine (技能框架,控制技能实例的运行及包含技能的公共函数等)</li>
+<li>lib (与具体游戏逻辑无关的公共库模块,包括基本计算几何计算, 数据结构及基本算法等)</li>
+<li>skill (各个技能实例执行逻辑文件)</li>
+<li>buff (各个BUFF实例执行逻辑文件)</li>
+<li>talent (各个天赋实例执行逻辑)</li>
+<li>ai (怪物Ai逻辑)</li>
+<li>test (模块测试例程)</li>
+</ul>
+
+
+<h3>模块组织结构</h3>
+
+<p>以lua table的形式组织各个模块组织结构</p>
+
+<ul>
+<li>world 整个脚本层最外层的模块，组织管理其他模块/数据
+
+<ul>
+<li>creatures 管理脚本中玩家/怪物对象table</li>
+<li>settings 存储配置表，包括技能属性配置表，BUFF属性配置表，天赋属性配置表，元数据配置列表
+
+<ul>
+<li>skills 存储各个技能属性配置表</li>
+<li>buffs 存储各个BUFF属性配置表</li>
+<li>talents 存储各个天赋属性配置表</li>
+<li>metadata 存储各类元数据配备表
+
+<ul>
+<li>chapions 各个职业数值配置表</li>
+<li>monsters 各类型怪物数值配置表</li>
+<li>levels 升级数值配置</li>
+<li>skills 各个技能基本数值配置表</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>engine 服务器启动脚本文件统一装载, 技能引擎模块(流程管理, 封装技能公共函数), 玩家上下线处理过程
+
+<ul>
+<li>init() 服务器启脚本系统初始化过程</li>
+<li>init_creature() 对象创建初始化过程</li>
+<li>on_player_online() 玩家上线处理过程</li>
+<li>on_player_offline() 玩家掉线处理过程</li>
+<li>add_skill() 对象添加技能</li>
+<li>del_skill() 对象删除技能</li>
+<li>update_skill() 升级对象技能</li>
+<li>add_talent() 对象添加天赋</li>
+<li>del_talent() 对象删除天赋</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Example:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">world</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">creatures</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">skill</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>        <span class="n">buff</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>        <span class="n">talent</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>        <span class="n">metadata</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>            <span class="n">chapion</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>            <span class="n">monster</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>            <span class="n">level</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>            <span class="n">skill</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="n">engine</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">skill</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="n">talent</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="n">skill</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="n">buff</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="n">ai</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>对象数据管理</h3>
+
+<p>C++中玩家或者怪物在脚本层中对应有管理其基本属性(需要在lua中管理的属性)，技能列表，BUFF列表的对象(lua table)，对象结构如下所示:</p>
+
+<ul>
+<li>类型值 区分玩家和怪物</li>
+<li>uid 对象ID，与C++层uid对象，用于索引对象</li>
+<li>props 基本属性列表</li>
+<li>skills 技能列表</li>
+<li>buffs BUFF列表</li>
+<li>variables 保存对象在脚本执行过程中产生的临时变量</li>
+<li>env       技能执行相关环境变量(包括技能执行子阶段)</li>
+</ul>
+
+
+<p>Example:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">creature</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nb">type</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">uid</span> <span class="o">=</span> <span class="mi">123</span><span class="p">,</span>
+</span><span class='line'>    <span class="n">props</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="n">skills</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="n">buffs</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="n">variables</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'>    <span class="n">env</span> <span class="o">=</span> <span class="p">{},</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>操作接口(封装成PT使用方式), 例如:</p>
+
+<ol>
+<li>AttachInPT(uid)</li>
+<li>GetSkillProperty(skill_id, uid)</li>
+</ol>
+
+
+<p><strong>Question</strong></p>
+
+<ol>
+<li>对象ID使用GUID还是uid</li>
+<li>目前怪物没有uid</li>
+</ol>
+
+
+<h3>技能框架(engine.skill)</h3>
+
+<p>技能框架划分为Enter, Fire, End三个大的通用阶段, 在Fire阶段中不同的技能实例又可划分为多个阶段:</p>
+
+<ol>
+<li>Enter阶段: 每个技能实例的唯一入口, 如果技能正在执行中则调用技能实例事件处理, 否则进行施法前判定并进行吟唱;</li>
+<li>Fire阶段: 吟唱正常结束后进入的技能执行阶段, 该阶段控制技能实例在不同执行子阶段的切换;</li>
+<li>End阶段: 技能结束阶段, 执行技能清理工作, 该阶段回调技能实例onEnd执行技能实例结束处理;</li>
+</ol>
+
+
+<p>技能框架示例如下:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="nb">module</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">world.engine.skill&quot;</span><span class="p">,</span> <span class="nb">package.seeall</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span> <span class="nf">Enter</span><span class="p">(</span><span class="n">skill_id</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">skill</span> <span class="o">=</span> <span class="nb">_G</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">skill&quot;</span><span class="o">..</span><span class="n">skill_id</span><span class="p">]</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="n">skill</span><span class="p">,</span> <span class="n">uid</span><span class="p">,</span> <span class="n">args</span><span class="p">}</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">GetObj</span><span class="p">(</span><span class="n">uid</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">obj</span><span class="p">.</span><span class="n">stage</span> <span class="k">then</span>
+</span><span class='line'>        <span class="n">obj</span><span class="p">.</span><span class="n">stage</span><span class="p">.</span><span class="n">handleEvent</span><span class="p">(</span><span class="n">ON_INPUT</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>        <span class="k">if</span> <span class="ow">not</span> <span class="n">selfOK</span><span class="p">()</span> <span class="k">then</span>
+</span><span class='line'>            <span class="n">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>            <span class="kd">local</span> <span class="n">on_enter</span> <span class="o">=</span> <span class="n">skill</span><span class="p">.</span><span class="n">onEnter</span>
+</span><span class='line'>            <span class="k">if</span> <span class="ow">not</span> <span class="n">on_enter</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="k">then</span>
+</span><span class='line'>                <span class="n">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">else</span>
+</span><span class='line'>                <span class="kd">local</span> <span class="n">onTimeout</span> <span class="o">=</span> <span class="k">function</span> <span class="nf">Fire</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="k">end</span>
+</span><span class='line'>                <span class="kd">local</span> <span class="n">onInterrupt</span> <span class="o">=</span> <span class="k">function</span> <span class="nf">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="k">end</span>
+</span><span class='line'>                <span class="n">Incant</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">skill</span><span class="p">.</span><span class="n">props</span><span class="p">.</span><span class="n">incantTime</span><span class="p">,</span> <span class="n">onTimeout</span><span class="p">,</span> <span class="n">onInterrupt</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span> <span class="c1">-- sync message to client</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span> <span class="nf">Fire</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">cnt</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">cnt</span> <span class="o">=</span> <span class="n">cnt</span> <span class="ow">or</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">stage</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">skill</span><span class="p">.</span><span class="n">onFire</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">stage_&quot;</span><span class="o">..</span><span class="n">cnt</span><span class="p">]</span>
+</span><span class='line'>    <span class="k">if</span> <span class="ow">not</span> <span class="n">stage</span> <span class="k">then</span>
+</span><span class='line'>        <span class="n">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span>
+</span><span class='line'>        <span class="n">stage</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+</span><span class='line'>        <span class="kd">local</span> <span class="n">ontick</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+</span><span class='line'>            <span class="kd">local</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">stage</span><span class="p">.</span><span class="n">update</span><span class="p">()</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">ret</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">then</span> <span class="c1">-- 转到下一个阶段</span>
+</span><span class='line'>                <span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span> <span class="c1">-- sync message to client</span>
+</span><span class='line'>                <span class="n">Fire</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">ret</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">return</span> <span class="kc">false</span>
+</span><span class='line'>            <span class="k">else</span>            <span class="c1">-- 转到结束阶段</span>
+</span><span class='line'>                <span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span> <span class="c1">-- sync message to client</span>
+</span><span class='line'>                <span class="n">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">return</span> <span class="kc">false</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>            <span class="k">return</span> <span class="kc">true</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>        <span class="n">Schedule</span><span class="p">(</span><span class="n">ontick</span><span class="p">)</span> <span class="c1">-- 执行阶段循环</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">function</span> <span class="nf">End</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">skill</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">skill</span>
+</span><span class='line'>    <span class="n">skill</span><span class="p">.</span><span class="n">onEnd</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span><span class="p">()</span> <span class="c1">-- sync message to client</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>技能实例部分</h4>
+
+<p>技能实例组成划分:</p>
+
+<ul>
+<li>onEnter: 吟唱前技能实例自定义过程, 返回false终止技能的执行;</li>
+<li>onEnd: 技能实例结束处理阶段;</li>
+<li>onFire: 技能执行阶段表, 该表中配置技能执行中的各个子阶段; 每个子阶段由begin, update, handleEvent三个函数组成, 分别表示子阶段开始的处理, 子阶段循环处理过程及子阶段事件处理过程;</li>
+</ul>
+
+
+<p>子阶段定义: 根据客户端输入事件划分的不同的技能执行过程, 例如战士的连刺可以划分为第一个阶段是普通Q过程, 第二个阶段是终结技阶段。</p>
+
+<p>子阶段配置格式为:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="n">onFire</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">stage_0</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">begin</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">update</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">handleEvent</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>技能实例示例:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="nb">module</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">world.skill.1000&quot;</span><span class="p">,</span> <span class="nb">package.seeall</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">onEnter</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">onEnd</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">onFire</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">stage_0</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">begin</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">update</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">return</span> <span class="mi">1</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">handleEvent</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'>    <span class="n">stage_1</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>        <span class="n">begin</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">update</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>        <span class="n">handleEvent</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">end</span><span class="p">,</span>
+</span><span class='line'>    <span class="p">},</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>属性更新机制</h3>
+
+<p>C++层实现一套脏属性更新机制, 提供给lua层添加更新属性请求的接口函数(该函数主要由脚本底层调用, 上层逻辑不直接调用), 属性更新系统定时或即时的编码变化的属性值给客户端.</p>
+
+<h3>消息同步机制</h3>
+
+<p>在技能阶段过程中按消息产生的时间先后顺序将消息缓存在lua层中, 在阶段结束时调用C++接口进行统一发送.</p>
+
+<p>消息格式:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>msg = {
+</span><span class='line'>        {key1 = value1},
+</span><span class='line'>        {key2 = value2},
+</span><span class='line'>        {key3 = value3},
+</span><span class='line'>        ...
+</span><span class='line'>    }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>代码示例:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">// C++发送消息接口</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">SendMessage</span><span class="p">(</span><span class="n">ctx</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="c1">-- lua 层消息缓存及发送</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}}</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">push</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">event_id</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">item</span> <span class="o">=</span> <span class="p">{[</span><span class="n">event_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">}</span>
+</span><span class='line'>    <span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">[</span><span class="n">dst</span><span class="p">]</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">[</span><span class="n">dst</span><span class="p">]</span> <span class="ow">or</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="nb">table.insert</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">[</span><span class="n">dst</span><span class="p">],</span> <span class="n">item</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">msg</span><span class="p">.</span><span class="n">send</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">SendMessage</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">self</span><span class="p">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>事件机制</h3>
+
+<p>联系是普遍存在的, 事件是事与事或对象与对象之间的相关关系, 在游戏中亦是如此, 比如玩家攻击怪物, 玩家与玩家发生碰撞等, 这些过程可以抽象为:</p>
+
+<p><img src="/images/ability-design/event_model.png" alt="event_model" /></p>
+
+<p>其中:</p>
+
+<ol>
+<li>事件源表示任何产生事件的对象, 比如玩家, 怪物或者飞弹等;</li>
+<li>事件表示任何可以处理的事件, 比如攻击, 眩晕或者碰撞等;</li>
+<li>响应者表示任何关注某种事件的对象;</li>
+<li>响应器表示对其关注事件的处理;</li>
+</ol>
+
+
+<p>我们可以将游戏中的事件主要划分为:</p>
+
+<ol>
+<li>定时器事件</li>
+<li>对象濒死事件</li>
+<li>对象死亡事件</li>
+<li>碰撞事件</li>
+<li>离开事件</li>
+<li>开始移动事件</li>
+<li>停止移动事件</li>
+<li>对象切场景事件</li>
+<li>玩家上线事件</li>
+<li>玩家下线事件</li>
+</ol>
+
+
+<h4>C++层事件管理结构</h4>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">class</span> <span class="n">EventBox</span> <span class="p">{</span>
+</span><span class='line'><span class="nl">public:</span>
+</span><span class='line'>    <span class="kt">int</span> <span class="n">Connect</span><span class="p">(</span><span class="n">EventType</span> <span class="n">ev</span><span class="p">);</span>                  <span class="c1">// 注册所关心的事件</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="nf">Disconnect</span><span class="p">(</span><span class="kt">int</span> <span class="n">eid</span><span class="p">);</span>                   <span class="c1">// 取消所关心的事件</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="nf">Signal</span><span class="p">(</span><span class="n">EventType</span> <span class="n">ev</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">args</span><span class="p">);</span>      <span class="c1">// 产生事件</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="nf">Dispatch</span><span class="p">();</span>                            <span class="c1">//事件分发</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 脚本接口</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 注册事件</span>
+</span><span class='line'><span class="c1">// 参数</span>
+</span><span class='line'><span class="c1">// ev 事件对象表(lua表), 包含事件类型, 事件参数, 事件源对象id</span>
+</span><span class='line'><span class="c1">// 返回值:</span>
+</span><span class='line'><span class="c1">// 成功返回事件id, 失败返回-1</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">event_connect</span><span class="p">(</span><span class="n">ev</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// 取消注册事件</span>
+</span><span class='line'><span class="kt">int</span> <span class="nf">event_disconnect</span><span class="p">(</span><span class="n">event_id</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Lua层事件管理结构</h4>
+
+<p>在脚本中通过engine.connect()和engine.disconnect()进行统一的事件注册及取消注册, 当事件派发时, C++统一调用egine.dispatch传人所有触发的事件, engine.dispatch进行统一的事件分发.</p>
+
+<p><img src="/images/ability-design/eventbox2.png" alt="EventBox" /></p>
+
+<p>代码示例:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="c1">-- event object</span>
+</span><span class='line'><span class="n">event</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'><span class="k">function</span> <span class="nf">event</span><span class="p">:</span><span class="n">new</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">src_obj</span><span class="p">,</span> <span class="n">dst_obj</span><span class="p">,</span> <span class="n">stage</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">ev</span> <span class="o">=</span> <span class="p">{</span><span class="n">id</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+</span><span class='line'>                <span class="nb">type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">src_obj</span> <span class="o">=</span> <span class="n">src_obj</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">dst_obj</span> <span class="o">=</span> <span class="n">dst_obj</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">stage</span> <span class="o">=</span> <span class="n">stage</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">list_node</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="c1">-- 双向链表结点方便从事件槽中删除事件</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">ev</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 事件映射 ID ==&gt; eventObj</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">events</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'><span class="c1">-- event_type ==&gt; eventObj</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">event_slots</span> <span class="o">=</span> <span class="p">{}</span> <span class="c1">-- dlist</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- 事件处理函数</span>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">connect</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">src_obj</span><span class="p">,</span> <span class="n">dst_obj</span><span class="p">,</span> <span class="n">stage</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">disconnect</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">event_id</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">schedule</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">args</span> <span class="n">interval</span><span class="p">,</span> <span class="k">repeat</span><span class="p">,</span> <span class="n">delay</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">signal</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">event_type</span><span class="p">,</span> <span class="n">src_obj</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">engine</span><span class="p">.</span><span class="n">dispatch</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>其余问题</h3>
+
+<ol>
+<li>由于技能属性和BUFF属性挪到脚本层管理需要修改现有C++提供的相关接口;</li>
+<li>其余功能脚本(副本, 任务相关)管理;</li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/06/03/lua-csv/">Parsing CSV Files in Lua</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-03T16:14:00+08:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2013</time>
+        
+         | <a href="/blog/2013/06/03/lua-csv/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>code snippet for parsing csv files in lua, mark it(from <a href="http://lua-users.org/wiki/LuaCsv">http://lua-users.org/wiki/LuaCsv</a>):</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">ParseCSVLine</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">sep</span><span class="p">)</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>  <span class="kd">local</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="n">sep</span> <span class="o">=</span> <span class="n">sep</span> <span class="ow">or</span> <span class="s1">&#39;</span><span class="s">,&#39;</span>
+</span><span class='line'>  <span class="k">while</span> <span class="kc">true</span> <span class="k">do</span>
+</span><span class='line'>      <span class="kd">local</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">pos</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">&quot;</span><span class="p">)</span> <span class="k">then</span> <span class="k">break</span> <span class="k">end</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">&quot;&#39;</span><span class="p">)</span> <span class="k">then</span>
+</span><span class='line'>          <span class="c1">-- quoted value (ignore separator within)</span>
+</span><span class='line'>          <span class="kd">local</span> <span class="n">txt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">&quot;</span>
+</span><span class='line'>          <span class="k">repeat</span>
+</span><span class='line'>              <span class="kd">local</span> <span class="n">startp</span><span class="p">,</span><span class="n">endp</span> <span class="o">=</span> <span class="nb">string.find</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="s1">&#39;</span><span class="s">^%b&quot;&quot;&#39;</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+</span><span class='line'>              <span class="n">txt</span> <span class="o">=</span> <span class="n">txt</span><span class="o">..</span><span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">startp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">endp</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>              <span class="n">pos</span> <span class="o">=</span> <span class="n">endp</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>              <span class="n">c</span> <span class="o">=</span> <span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">pos</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+</span><span class='line'>              <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="s">&quot;&#39;</span><span class="p">)</span> <span class="k">then</span> <span class="n">txt</span> <span class="o">=</span> <span class="n">txt</span><span class="o">..</span><span class="s1">&#39;</span><span class="s">&quot;&#39;</span> <span class="k">end</span>
+</span><span class='line'>              <span class="c1">-- check first char AFTER quoted string, if it is another</span>
+</span><span class='line'>              <span class="c1">-- quoted string without separator, then append it</span>
+</span><span class='line'>              <span class="c1">-- this is the way to &quot;escape&quot; the quote char in a quote. example:</span>
+</span><span class='line'>              <span class="c1">--   value1,&quot;blub&quot;&quot;blip&quot;&quot;boing&quot;,value3  will result in blub&quot;blip&quot;boing  for the middle</span>
+</span><span class='line'>          <span class="k">until</span> <span class="p">(</span><span class="n">c</span> <span class="o">~=</span> <span class="s1">&#39;</span><span class="s">&quot;&#39;</span><span class="p">)</span>
+</span><span class='line'>          <span class="nb">table.insert</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">txt</span><span class="p">)</span>
+</span><span class='line'>          <span class="nb">assert</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">sep</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">&quot;</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="k">else</span> 
+</span><span class='line'>          <span class="c1">-- no quotes used, just look for the first separator</span>
+</span><span class='line'>          <span class="kd">local</span> <span class="n">startp</span><span class="p">,</span><span class="n">endp</span> <span class="o">=</span> <span class="nb">string.find</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">sep</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">if</span> <span class="p">(</span><span class="n">startp</span><span class="p">)</span> <span class="k">then</span>
+</span><span class='line'>              <span class="nb">table.insert</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">pos</span><span class="p">,</span><span class="n">startp</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>              <span class="n">pos</span> <span class="o">=</span> <span class="n">endp</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>          <span class="k">else</span>
+</span><span class='line'>              <span class="c1">-- no separator found -&gt; use rest of string and terminate</span>
+</span><span class='line'>              <span class="nb">table.insert</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">pos</span><span class="p">))</span>
+</span><span class='line'>              <span class="k">break</span>
+</span><span class='line'>          <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">res</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/31/reverse-proxy/">ssh+nginx反向代理访问内网Web Service</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T14:14:00+08:00" pubdate data-updated="true">May 31<span>st</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/31/reverse-proxy/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>在一般的网络环境下，互联网无法直接访问到局域网的计算机，如果你想在家里访问公司局域网的计算机或者在公司想访问家里的计算机，那么需要借助特定的工具，这里以ssh+nginx反向代理访问局域网计算机的web服务器为例。
+假定你有一台具有公网IP的服务器S1(211.83.241.83)以及一台在局域网开启web服务的计算机S2(172.16.18.3)，如下图所示:</p>
+
+<p><img src="/images/reverse-proxy-net.png" alt="reverse-proxy-net.png" /></p>
+
+<h3>概述</h3>
+
+<p>S2通过ssh连接S1开启反向隧道，它在服务器上开启一个监听端口12345同时在将该端口影射在本地web服务端口8080上，S1上开启ngix反向代理将80端口代理到12345上，用户通过访问S1时nginx将请求代理到12345端口上，ssh通过建立好的隧道将请求传输到S2，S2从隧道中接收请求并转发到监听8080端口的web服务，并将结果通过隧道返回给S1，S1从隧道获取结果返回给nginx，nginx再将请求结果返回给用户，从而访问到局域网内的web服务。</p>
+
+<h3>配置</h3>
+
+<ol>
+<li>在你所需要访问的web service的内网服务器S2上执行以下命令:</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -f -N -R &lt;服务器端口>:&lt;本地IP>:&lt;本地端口> &lt;服务器地址></span></code></pre></td></tr></table></div></figure>
+
+
+<p>例如:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh -f -N -L 12345:127.0.0.1:8080 211.83.241.83</span></code></pre></td></tr></table></div></figure>
+
+
+<p>该命令执行后会将远程服务器S1(211.83.241.83:12345)映射到本地端口8080</p>
+
+<ol>
+<li><p>在公网服务器S1上开启nginx反向代理:</p>
+
+<p> 例如:</p></li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>server {
+</span><span class='line'>        listen       80;
+</span><span class='line'>        server_name  localhost;
+</span><span class='line'>        location / {
+</span><span class='line'>            proxy_pass  http://127.0.0.1:12345;
+</span><span class='line'>            proxy_set_header   Host             $host:80;
+</span><span class='line'>            proxy_set_header   X-Real-IP        $remote_addr;
+</span><span class='line'>            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+</span><span class='line'>            proxy_set_header Via    "nginx";
+</span><span class='line'>        }
+</span><span class='line'>    }</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-29T16:49:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/05/29/ability-analyze-report/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Author</strong>: Tuz (<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x79;&#111;&#x75;&#x6e;&#x67;&#116;&#114;&#x69;&#112;&#x73;&#64;&#109;&#x61;&#x69;&#108;&#x2e;&#x63;&#111;&#109;">&#121;&#111;&#x75;&#x6e;&#x67;&#x74;&#x72;&#105;&#112;&#115;&#64;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#x6d;</a>)</p>
+
+<br>
+
+
+<p><strong>Date</strong>: 05.20.2013</p>
+
+<h3>Contents</h3>
+
+<ul>
+<li><a href="#overview">概述</a></li>
+<li><a href="#skill_mgr_cpp">服务器底层<code>(C++)</code>技能管理分析</a>
+
+<ul>
+<li><a href="#cpp_classess">技能C++层次类关系图</a></li>
+<li><a href="#base_skill_proc">技能释放基本流程</a></li>
+<li><a href="#enable_talent_proc">天赋开启流程</a></li>
+</ul>
+</li>
+<li><a href="#skill_mgr_lua">脚本层技能管理分析</a></li>
+<li><a href="#script_netmsg">脚本中网络通信</a></li>
+<li><a href="#zhan_skill">战职业技能分析</a>
+
+<ul>
+<li><a href="#zhan_q">Q-连刺</a></li>
+<li><a href="#zhan_w">W-旋风</a></li>
+<li><a href="#zhan_e">E-怒吼</a></li>
+<li><a href="#zhan_r">R-冲抢</a></li>
+<li><a href="#zhan_a">战普通攻击技能</a></li>
+</ul>
+</li>
+<li><a href="#sheng_skill">圣职业技能分析</a>
+
+<ul>
+<li><a href="#sheng_q">Q-滑步</a>
+
+<ul>
+<li><a href="#sheng_q1">天赋-距离</a></li>
+<li><a href="#sheng_q2">天赋-快速准备</a></li>
+<li><a href="#sheng_q3">天赋-斩杀</a></li>
+</ul>
+</li>
+<li><a href="#sheng_w">W-三向分身</a>
+
+<ul>
+<li><a href="#sheng_w1">天赋-增强</a></li>
+<li><a href="#sheng_w2">天赋-鬼步</a></li>
+<li><a href="#sheng_w3">天赋-反击</a></li>
+</ul>
+</li>
+<li><a href="#sheng_e">E-连切</a>
+
+<ul>
+<li><a href="#sheng_e1">天赋-影增强</a></li>
+<li><a href="#sheng_e2">天赋-嗜血</a></li>
+<li><a href="#sheng_e3">天赋-破绽</a></li>
+</ul>
+</li>
+<li><a href="#sheng_r">R-绝影斩</a>
+
+<ul>
+<li><a href="#sheng_r1">天赋-追击强化</a></li>
+<li><a href="#sheng_r2">天赋-饮血</a></li>
+<li><a href="#sheng_r3">天赋-反刃</a></li>
+</ul>
+</li>
+<li><a href="#passive_talent">被动天赋</a>
+
+<ul>
+<li><a href="#sheng_b1">会心一击</a></li>
+<li><a href="#sheng_b2">替身术</a></li>
+<li><a href="#sheng_b3">残影精通</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<hr />
+
+<h2 id="overview">概述</h2>
+
+
+<p>为了更好的优化技能脚本模块，本文主要针对职业基本属性配置、技能属性配置、技能脚本实现及与其相关联的BUFF、天赋等模块进行梳理分析。</p>
+
+<h2 id="skill_mgr_cpp">服务器底层(C++)技能的管理分析</h2>
+
+
+
+
+<h3 id="cpp_classess">技能C++层次类关系图</h3>
+
+
+<p><img src="/images/ability-analyze-report/classes_relation.png" alt="C++类关系图" /></p>
+
+<h3 id="base_skill_proc">技能释放基本流程</h3>
+
+
+<p>技能释放由客户端输入驱动通过网络模块发送消息，服务器收到消息后查找到技能对应释放对象调用脚本系统执行对应技能的入口函数， 其执行过程如下序列图所示:
+<img src="/images/ability-analyze-report/ability_flow.png" alt="技能释放序列图" /></p>
+
+<h3 id="enable_talent_proc">天赋开启流程</h3>
+
+
+<p>在客户端天赋界面点选各个技能天赋确定后发消息通知服务器，服务器解析消息根据技能id及天赋id调用对应技能天赋的初始化lua函数(当玩家登陆进入服务器时也会根据天赋记录调用初始化函数)，执行序列图如下所示:</p>
+
+<p><img src="/images/ability-analyze-report/enable_talent_proc.png" alt="天赋开启流程" /></p>
+
+<p><em>BTW: 当前天赋系统结构不能非常简单完美的实现重置天赋，那些根据额外的天赋属性触发的天赋可以简单的清理玩家对象的技能属性列表，但对于那些被动天赋很多都是挂触发器(Trigger)实现的，这需要删除触发器，进而涉及到触发器ID的保存问题</em></p>
+
+<p>技能中天赋逻辑参见<a href="#sheng_skill">圣技能分析中天赋相关内容</a></p>
+
+<h2 id="skill_mgr_lua">脚本层技能管理分析</h2>
+
+
+<p>当前脚本系统中根据功能大致可分为以下几个模块:</p>
+
+<ol>
+<li>职业基本属性配置模块(classAttTable): 通过lua table配置各个职业的基本数值属性、主要有基础HP、基础MP、基础护甲、基础法抗、基础攻击力，基础法术强度等与技能计算相关的属性，配置示例如下：</li>
+</ol>
+
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'>    <span class="n">ClassAttTable</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>      <span class="p">[</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">MaxHpBase</span> <span class="o">=</span> <span class="mi">550</span><span class="p">,</span> <span class="n">ArmorBase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SpellResistanceBase</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">PhysicalPowerBase</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">CriticalRating</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">CriticalDamageIncrease</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ArmorPenetration</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ArmorPenetrationRatio</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">AttackInterval</span> <span class="o">=</span> <span class="mi">900</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">AttackTimeBase</span> <span class="o">=</span> <span class="mf">1.11</span><span class="p">,</span> <span class="n">SpellPowerBase</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">SpellPenetration</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SpellPenetrationRatio</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SpellCDReduce</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+</span><span class='line'>                <span class="n">MaxMpBase</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="n">MpRecoverBase</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">HpRecover</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">SpellToughness</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">HitProbability</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">DodgeProbability</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ViewRange</span> <span class="o">=</span> <span class="mi">12</span><span class="p">},</span>
+</span><span class='line'>    <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>目前该配置由策划填写的csv表格通过工具生成lua文件所得。</p>
+
+<ol>
+<li><p>技能数值属性(skillAttTable): 通过lua table配置各个技能的基本数值属性, 包括技能消耗、技能CD时间、技能断定距离、技能伤害类型及技能伤害，该配置与职业基本属性配置一样通过csv表格由工具生成lua文件所得；</p></li>
+<li><p>技能公共模块(serverSkillPublic): 主要包括技能流程中经常使用到的公共函数，包括施法前检查函数skillSelfOK, skillTargetOK，吟唱函数skillIncant以及BUFF公共函数等;</p></li>
+<li><p>技能属性配置模块(skill_propertyset): 配置初始化各个技能的所有属性, 其中技能伤害，技能CD等基础数值属性直接引用技能数值属性配置，技能配置中通过大量调用接口函数InitSkillProperty实现;</p></li>
+<li><p>BUFF数值配置模块(buff_propertyset): 配置方式与技能属性配置相同均通过InitSkillProperty配置</p></li>
+<li><p>技能逻辑模块(skill): 各个技能的具体的执行逻辑，例如战普通攻击技能脚本逻辑/skills/skill_11001.lua</p></li>
+<li><p>BUFF逻辑模块(buff)</p></li>
+<li><p>天赋系统模块(genius): 包括天赋属性配置及天赋执行逻辑函数, 目前我们有些的天赋是嵌入技能脚本中执行的;</p></li>
+<li><p>数值计算模块(math): 主要包括技能消耗计算，技能伤害计算等与数值相关的计算模块;</p></li>
+<li><p>怪物AI模块(AI): 驱动怪物行为逻辑.</p></li>
+</ol>
+
+
+<p>这些模块通过脚本逻辑或者BUFF逻辑组织起来组成完成的技能逻辑，下面具体分析战及圣各个技能脚本实现。</p>
+
+<h2 id="script_netmsg">脚本中网络通信</h2>
+
+
+<p>目前项目里lua脚本与客户端的通信可以通过C++提供的功能接口进行间接通信，还可以通过调用C++提供的接口RunClientScript与客户端进行直接通信，该函数功能是通过发送客户端定义好的lua函数名及序列化好的参数调用客户端的逻辑脚本，目前脚本中大量使用RunClientScript主要:</p>
+
+<ol>
+<li>怪物AI中同步怪物属性及动作;</li>
+<li>副本相关逻辑脚本;</li>
+<li><p>技能脚本中控制技能特效、发送技能伤害及资源消耗;</p>
+
+<ul>
+<li><p>发送命中伤害显示playHitVisToClient()</p>
+
+<p>  <img src="/images/ability-analyze-report/playHitVisToClient.png" alt="playHitVisToClient" /></p></li>
+<li><p>向客户端发送某目标免疫、闪避、抵抗的消息playStateInvalidToClient()</p>
+
+<p>  <img src="/images/ability-analyze-report/playStateInvalidToClient.png" alt="playStateInvalidToClient" /></p></li>
+<li><p>skillMessageToClient(主要是控制动作特效)skillMessageToClient()</p>
+
+<p>  <img src="/images/ability-analyze-report/skillMessageToClient.png" alt="skillMessageToClient" /></p></li>
+<li><p>消耗资源，同时发送相关显示消息给客户端resCostAndMsgToClient()</p>
+
+<p>  <img src="/images/ability-analyze-report/resCostAndMsgToClient.png" alt="resCostAndMsgToClient" /></p></li>
+</ul>
+</li>
+<li><p>数值计算模块中更新角色属性(playerAttCaculate).</p>
+
+<p> <img src="/images/ability-analyze-report/playerAttCaculate.png" alt="playerAttCaculate" /></p></li>
+</ol>
+
+
+<h2 id="zhan_skill">战职业技能分析</h2>
+
+
+<p>战技能大都通过SkillStage技能属性控制技能的每一阶段的逻辑执行, 下面具体看看每个技能的执行序列图。</p>
+
+<h3 id="zhan_q">Q-连刺</h3>
+
+
+<ul>
+<li><p>需求:</p>
+
+<p>  连续对前面扇形范围内全部敌人造成数次伤害，之后，对更大范围内敌人造成一次高伤害但自身有收招硬直的攻击</p></li>
+<li><p>序列图:</p>
+
+<p>  <img src="/images/ability-analyze-report/zhan_11002.png" alt="11003序列图" /></p></li>
+</ul>
+
+
+<h3 id="zhan_w">W-旋风</h3>
+
+
+<ul>
+<li><p>需求:</p>
+
+<p>  前冲一小段距离，并连续打击周围的敌人，可再次点击热键来释放终结技</p></li>
+<li><p>序列图:</p>
+
+<p>  <img src="/images/ability-analyze-report/zhan_11003.png" alt="11003序列图" /></p></li>
+</ul>
+
+
+<h3 id="zhan_e">E-怒吼</h3>
+
+
+<ul>
+<li><p>需求:</p>
+
+<p>  技能施放后，战士发出一声怒吼，以自身为中心x格（暂定6）范围内敌人减速y%（暂定40%），持续z秒（暂定3</p></li>
+<li><p>时序图:</p>
+
+<p>  <img src="/images/ability-analyze-report/zhan_11004.png" alt="11003序列图" /></p></li>
+</ul>
+
+
+<h3 id="zhan_r">R-冲枪</h3>
+
+
+<ul>
+<li><p>需求:</p>
+
+<p>  对方向前冲，行径中对前面区域多次造成伤害并击退，击退距离和战每段冲刺距离一样，方向为被击退者对于战的方向。过程中再次热键释放终结技升龙劈</p></li>
+<li><p>时序图:</p>
+
+<p>  <img src="/images/ability-analyze-report/zhan_11005.png" alt="11005序列图" /></p></li>
+</ul>
+
+
+<h3 id="zhan_a">战普通攻击技能(11001)</h3>
+
+
+<ul>
+<li><p>时序图:</p>
+
+<p>  <img src="/images/ability-analyze-report/zhan_11001.png" alt="11001序列图" /></p></li>
+</ul>
+
+
+<h2 id="sheng_skill">圣职业技能分析</h2>
+
+
+
+
+<h3 id="sheng_q">Q-滑步</h3>
+
+
+<ul>
+<li><p>需求:</p>
+
+<p>  在出现选择框后可以再次点击该技能，选择框会出现些许形状变化，此操作用于区分真身位置，默认状况是残影前冲攻击，再次点击则是真身前冲残影留在原地</p></li>
+<li><p>时序图:</p>
+
+<p>  <img src="/images/ability-analyze-report/sheng_41002.png" alt="41002序列图" /></p>
+
+<p>  <h4 id="sheng_q1">天赋-距离</h4></p>
+
+<ul>
+<li>需求: 增加流影斩最大可移动距离25%</li>
+<li><p>实现分析: 根据添加的技能属性Gis_ImproveDisRatio修改技能属性MaxDis值, 其过程如下时序图所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_q1.png" alt="gis_sheng_q1" /></p></li>
+</ul>
+
+
+<p>  <h4 id="sheng_q2">天赋-快速准备</h4></p>
+
+<ul>
+<li>需求: 当流影斩成功命中敌人时，会立即缩短流影斩一半的冷却时间</li>
+<li><p>实现分析: 开启该天赋会添加新技能属性Gis_cutCDTime，当Q命中目标时尝试调用gis_sheng.on_cutdown_cdtime(),其过程如下图所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_q2.png" alt="gis_sheng_q2" /></p></li>
+</ul>
+
+
+<p>  <h4 id="sheng_q3">天赋-斩杀</h4></p>
+
+<ul>
+<li>需求: 当目标的当前血量少于20%，圣会尝试斩杀对方，造成基础攻击300%的伤害，只有真身出击时才可触发这个效果</li>
+<li><p>实现分析: 开启该天赋会添加新技能属性Gis_lopHpRatio及Gis_lopDamRatio, 当对目标伤害结算前尝试调用gis_sheng.try_lop_target()增加伤害并伤害结算,其过程如下图所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_q3.png" alt="gis_sheng_q3" /></p></li>
+</ul>
+</li>
+</ul>
+
+
+<h3 id="sheng_w">W-三向分身</h3>
+
+
+<ul>
+<li><p>需求:</p>
+
+<p>  出现方向的选择框并确认后，角色将朝选定的方向滑出，与角色呈120度夹角的另外2个方向会有2个残影以同样的姿势滑出</p></li>
+<li><p>时序图:</p>
+
+<p>  <img src="/images/ability-analyze-report/sheng_41003.png" alt="41003序列图" /></p>
+
+<p>  <h4 id="sheng_w1">天赋-增强</h4></p>
+
+<ul>
+<li>需求: 使用三项分身之后，获得BUFF，圣及其残影的所有伤害提升30%，持续1.5秒</li>
+<li><p>实现分析: 技能释放后调用gis_sheng.try_improve_all_damage()检查是否启用该天赋并添加增益BUFF, 其过程如下所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_w1.png" alt="gis_sheng_w1" /></p></li>
+</ul>
+
+
+<p>  <h4 id="sheng_w2">天赋-鬼步</h4></p>
+
+<ul>
+<li>需求: 被圣及其分身所碰到每个目标都将被减速30%，持续2秒</li>
+<li><p>实现分析: 施法前调用gis_sheng.try_guibu()检查是否启用改天赋并添加碰撞触发器, 其过程如下所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_w2.png" alt="gis_sheng_w2" /></p></li>
+</ul>
+
+
+<p>  <h4 id="sheng_w3">天赋-反击</h4></p>
+
+<ul>
+<li>需求:使用三向分身后角色会获得反击状态2秒，在此状态持续时圣受到攻击时，残影会瞬移到攻击者身旁重击他使之昏迷1秒，触发这个效果后BUFF会消失</li>
+<li><p>实现分析: 技能释放后调用gis_sheng.try_counterattack()检查是否启用该技能，如果启用添加反击BUFF，反击BUFF给宿主对象注册伤害触发器，当触发器触发时触发影子进行攻击，其过程如下所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_w3.png" alt="gis_sheng_w3" /></p></li>
+</ul>
+</li>
+</ul>
+
+
+<h3 id="sheng_e">E-连切</h3>
+
+
+<ul>
+<li><p>需求:</p>
+
+<p> 按下快捷键，角色朝鼠标方向发动攻击，没按一次追加一次攻击，最多五次进入冷却时间（前面攻击长时间未按键也会进入冷却）,每次攻击会使目标定身1秒</p></li>
+<li><p>时序图:</p>
+
+<p>  <img src="/images/ability-analyze-report/sheng_41004.png" alt="41004序列图" /></p>
+
+<p>  <h4 id="sheng_e1">天赋-影增强</h4></p>
+
+<ul>
+<li>需求: 连切引发的影子联动攻击的伤害提高50%</li>
+<li><p>实现分析: 影子攻击前调用 gis_sheng.try_improve_blur_damage()提供技能伤害数值并返回恢复函数，攻击过程结束时执行恢复，其过程如下所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_e1.png" alt="gis_sheng_e1" /></p></li>
+</ul>
+
+
+<p>  <h4 id="sheng_e2">天赋-嗜血</h4></p>
+
+<ul>
+<li>需求: 圣的连切会让对方暴露弱点，使对方承受的圣的伤害提升30%，这个DEBUFF持续1.5秒</li>
+<li><p>实现分析: 伤害结算前调用gis_sheng.try_be_bloodthirsty()给目标添加DEBUFF，其过程如下所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_e2.png" alt="gis_sheng_e2" /></p></li>
+</ul>
+
+
+<p>  <h4 id="sheng_e3">天赋-破绽</h4></p>
+
+<ul>
+<li>需求: 3次连续被击退的敌人将被击倒(2.5秒)</li>
+<li><p>实现分析: 当发生3次攻击时调用gis_sheng.try_be_rip()给目标添加击倒DEBUFF，其过程如下所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_e3.png" alt="gis_sheng_e3" /></p></li>
+</ul>
+</li>
+</ul>
+
+
+<h3 id="sheng_r">R-绝影斩</h3>
+
+
+<ul>
+<li><p>需求:</p>
+
+<p>  按键后出现锥形选择框, 选择方向后角色做出攻击准备姿势，在2秒后对区域发动沉重AOE攻击;同时圆形提示框内的残影会立即瞬移到箭头区域对区域内的敌人实施攻击，每个残影的攻击会使敌人昏迷0.5秒</p></li>
+<li><p>时序图:</p>
+
+<p>  <img src="/images/ability-analyze-report/sheng_41006.png" alt="41006序列图" /></p>
+
+<p>  <h4 id="sheng_r1">天赋-追击强化</h4></p>
+
+<ul>
+<li>需求: 被残影追击攻击到的敌人将被昏迷</li>
+<li><p>实现分析: 当影攻击到目标添加昏迷BUFF前调用gis_sheng.try_enhance_pursue()增加昏迷BUFF时间，其过程如下所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_r1.png" alt="gis_sheng_r1" /></p></li>
+</ul>
+
+
+<p>  <h4 id="sheng_r2">天赋-饮血</h4></p>
+
+<ul>
+<li>需求: 每击中一个敌人，会给圣叠加一层饮血BUFF，在10秒内回复最大血量的10%，最多可叠加5层</li>
+<li><p>实现分析: 当攻击到目标伤害结算后调用gis_sheng.try_bebloodthirsty_with_healthregen()添加饮血BUFF，其过程如下所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_r2.png" alt="gis_sheng_r2" /></p></li>
+</ul>
+
+
+<p>  <h4 id="sheng_r3">天赋-反刃</h4></p>
+
+<ul>
+<li>需求: 到达目标点之后，圣再次施放乱舞从而返回起始位置，再次造成伤害</li>
+<li><p>实现分析: 当技能释放后调用gis_sheng.try_anti_blade()返回lua闭包函数并执行该闭包，该闭包注册移动停止触发器，当移动停止后调整面向并调用skill_41006_cast()以达到再次施法，其过程如下图所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_r3.png" alt="gis_sheng_r3" /></p></li>
+</ul>
+</li>
+</ul>
+
+
+<h3 id="passive_talent">被动天赋</h3>
+
+
+
+
+<h4 id="sheng_b1">会心一击</h4>
+
+
+<ul>
+<li>需求: 圣的普通攻击内置CD延长至2倍于目前时长，但会造成1.5倍于目前伤害的物理伤害</li>
+<li>实现分析: 启用该天赋直接修改普通攻击技能CD时间, 示意图略</li>
+</ul>
+
+
+<h4 id="sheng_b2">替身术</h4>
+
+
+<ul>
+<li>需求: 只要还有自身残影在场，圣便不会死去，当此时圣受到致命伤害时，圣和残影位置互换，由残影来遭受此次伤害</li>
+<li><p>实现分析: 启用该天赋时给玩家对象身上保存拦截死亡HOOK(<em>BTW: 由于结构的原因只能用这种取巧的方式实现</em>)，该HOOK函数主要功能是与周围最近的影子交换位置并取消其所受伤害减少的HP，其过程如下图所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_b2.png" alt="gis_sheng_b1" /></p></li>
+</ul>
+
+
+<h4 id="sheng_b3">残影精通</h4>
+
+
+<ul>
+<li>需求: 当残影由于受到伤害消失时，将回复圣能量30点，并会使残影位置上的敌人减速30%，持续1.5秒</li>
+<li><p>实现分析: 启用该天赋时添加一个新技能41010(用于承载资源消耗)，当影子受伤消失时执行该技能的资源消耗并给周围敌对目标添加DEBUFF，其过程如下图所示:</p>
+
+<p>  <img src="/images/ability-analyze-report/gis_sheng_b3.png" alt="gis_sheng_b3" /></p></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
 <aside class="sidebar">
   
     <section>
@@ -213,7 +1737,7 @@ May 31 2013 posted in &hellip;">
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Tuz -
+  Copyright &copy; 2014 - Tuz -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -244,7 +1768,7 @@ May 31 2013 posted in &hellip;">
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
@@ -255,4 +1779,3 @@ May 31 2013 posted in &hellip;">
 
 </body>
 </html>
->>>>>>> ce35aaa50fd7538060580ccbb212aff62a0da0d4

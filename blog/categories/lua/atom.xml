@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: lua | log(1)]]></title>
-  <link href="http://logit.me/blog/categories/lua/atom.xml" rel="self"/>
-  <link href="http://logit.me/"/>
-  <updated>2013-10-15T06:50:47+08:00</updated>
-  <id>http://logit.me/</id>
+  <link href="http://youngtrips.github.io/logit/blog/categories/lua/atom.xml" rel="self"/>
+  <link href="http://youngtrips.github.io/logit/"/>
+  <updated>2014-05-12T22:47:28+08:00</updated>
+  <id>http://youngtrips.github.io/logit/</id>
   <author>
     <name><![CDATA[Tuz]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Parsing CSV files in Lua]]></title>
-    <link href="http://logit.me/blog/2013/06/03/lua-csv/"/>
+    <link href="http://youngtrips.github.io/logit/blog/2013/06/03/lua-csv/"/>
     <updated>2013-06-03T16:14:00+08:00</updated>
-    <id>http://logit.me/blog/2013/06/03/lua-csv</id>
+    <id>http://youngtrips.github.io/logit/blog/2013/06/03/lua-csv</id>
     <content type="html"><![CDATA[<p>code snippet for parsing csv files in lua, mark it(from <a href="http://lua-users.org/wiki/LuaCsv">http://lua-users.org/wiki/LuaCsv</a>):</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
