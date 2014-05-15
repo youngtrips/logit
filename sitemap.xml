@@ -2,7 +2,6 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://youngtrips.github.io/logit/blog/2013/05/29/ability-analyze-report/</loc>
-<<<<<<< HEAD
         <lastmod>2014-05-16T01:06:50+08:00</lastmod>
     </url>
     <url>
@@ -32,49 +31,13 @@
     <url>
         <loc>http://youngtrips.github.io/logit/</loc>
         <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-=======
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
     </url>
     <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/05/31/reverse-proxy/</loc>
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
+        <loc>http://youngtrips.github.io/logit/robots.txt</loc>
+        <lastmod>2014-05-12T22:47:23+08:00</lastmod>
     </url>
     <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/06/03/lua-csv/</loc>
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/06/24/ability-system-design/</loc>
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/10/10/game-ai-design/</loc>
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/about/</loc>
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/archives/</loc>
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/categories/</loc>
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
->>>>>>> da92f75ba57b770db8574f24f99fef6ca4a3b2f5
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/</loc>
-        <lastmod>2014-05-15T12:59:19+08:00</lastmod>
-    </url>
-    <url>
-<<<<<<< HEAD
         <loc>http://youngtrips.github.io/logit/about/</loc>
         <lastmod>2014-05-16T01:22:58+08:00</lastmod>
-=======
-        <loc>http://youngtrips.github.io/logit/robots.txt</loc>
-        <lastmod>2014-05-15T12:38:13+08:00</lastmod>
->>>>>>> da92f75ba57b770db8574f24f99fef6ca4a3b2f5
     </url>
 </urlset>
