@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[log(1)]]></title>
-  <link href="http://youngtrips.github.io/logit/atom.xml" rel="self"/>
+  <link href="http://youngtrips.github.io/logit/feed" rel="self"/>
   <link href="http://youngtrips.github.io/logit/"/>
   <updated>2014-11-12T21:10:59+08:00</updated>
   <id>http://youngtrips.github.io/logit/</id>
@@ -821,7 +821,7 @@ end
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Parsing CSV Files in Lua]]></title>
+    <title type="html"><![CDATA[Parsing CSV files in Lua]]></title>
     <link href="http://youngtrips.github.io/logit/blog/2013/06/03/lua-csv/"/>
     <updated>2013-06-03T16:14:00+08:00</updated>
     <id>http://youngtrips.github.io/logit/blog/2013/06/03/lua-csv</id>
