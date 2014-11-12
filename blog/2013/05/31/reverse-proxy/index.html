@@ -1,71 +1,104 @@
 
 <!DOCTYPE HTML>
-<html lang="zh-cn">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>ssh+nginx反向代理访问内网Web Service - log(1)</title>
+	<meta charset="utf-8">
+	<title>ssh+nginx反向代理访问内网Web Service - log(1)</title>
+    <meta name="author" content="Tuz">
+    
+	<meta name="description" content="在一般的网络环境下，互联网无法直接访问到局域网的计算机，如果你想在家里访问公司局域网的计算机或者在公司想访问家里的计算机，那么需要借助特定的工具，这里以ssh+nginx反向代理访问局域网计算机的web服务器为例。
+假定你有一台具有公网IP的服务器S1(211.83.241.83) &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta name="author" content="Tuz">
-  
-  <meta name="description" content="ssh+nginx反向代理访问内网Web Service 在一般的网络环境下，互联网无法直接访问到局域网的计算机，如果你想在家里访问公司局域网的计算机或者在公司想访问家里的计算机，那么需要借助特定的工具，这里以ssh+nginx反向代理访问局域网计算机的web服务器为例。 &hellip;">
-  
-  
+	<link href="/atom.xml" rel="alternate" title="log(1)" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.ico" rel="shortcut icon">
+    <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
-  <link rel="canonical" href="http://youngtrips.github.io/logit/blog/2013/05/31/reverse-proxy">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="log(1)" type="application/atom+xml">
+    <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+    <script type="text/javascript" src="/javascripts/jquery-tapir.js"></script>
+
+    <!-- remove or comment it to disable ajaxification -->   
+    <script src="/javascripts/ajaxify.js"></script>
+   
+    
+    
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-34373738-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
 </head>
+
+
+<body>
+    <div id="wrapper">
+    <header id="header" class="inner"><!-- for more effects see _animate.scss -->
+<h1 class="animated bounceInDown">
+    <div id="headerbg">
+        Tuz
+    </div>
+</h1>
+<br>
+
+<ul id="social-links" style="text-align:center">
   
-<body class="default">
-  <div id="wrapper">
-    <div id="header">
-  <h1><a href="/">log(1)</a></h1>
-  
-    <p>somewhere to keep mind</p>
-  
-</div>
-<ul id="social-links">
-  
-    <li><a class="feed" href="/atom.xml" title="RSS">RSS</a></li>
+  <!-- GitHub -->
+  <li>
+  <a href="https://github.com/youngtrips" class="github" title="Github"></a>
+  </li>
   
   
   
-    <li> <a class="github" href="https://github.com/youngtrips" title="GitHub">GitHub</a> </li>
+  
+  
+  
+  
   
 </ul>
-<div class="clear"></div>
+
+
+<!-- use full url including 'index.html' for navigation bar if you are using ajax -->
 <ul id="nav">
-  
-    <li> <a href="/">blog</a> </li>
-  
-
-  
-    <li><a href="/blog/archives">archives</a></li>
-  
+	<li id="ajax"><a href="/index.html">Home</a></li>
+	<li id="ajax"><a href="/blog/archives/index.html">Archives</a></li>
+    <li><a href="/atom.xml">RSS</a></li>
+    
+    <li>
+    <div id="dark">
+        <form method="get" action="/search.html" id="search">
+            <input name="query" type="text" placeholder="Search..." x-webkit-speech />
+        </form>
+    </div>
+    </li>
+        
 </ul>
 
-    <div id="main"> <div class="post-header">
-  
-    <h1 class="post-title">ssh+nginx反向代理访问内网Web Service</h1>
-  
-  
 
 
 
+</header>
 
-
-
-
-
-  
-
-
-<time datetime="2013-05-31T14:14:00+08:00" pubdate data-updated="true"></time>
-</div>
-
-
-<div class="post-content"><p>在一般的网络环境下，互联网无法直接访问到局域网的计算机，如果你想在家里访问公司局域网的计算机或者在公司想访问家里的计算机，那么需要借助特定的工具，这里以ssh+nginx反向代理访问局域网计算机的web服务器为例。
+<div id="toload">
+<!-- begin toload --> 
+    <div id="content" class="inner">
+        <article class="post">
+	<h2 class="title">ssh+nginx反向代理访问内网Web Service</h2>
+	<div class="entry-content"><p>在一般的网络环境下，互联网无法直接访问到局域网的计算机，如果你想在家里访问公司局域网的计算机或者在公司想访问家里的计算机，那么需要借助特定的工具，这里以ssh+nginx反向代理访问局域网计算机的web服务器为例。
 假定你有一台具有公网IP的服务器S1(211.83.241.83)以及一台在局域网开启web服务的计算机S2(172.16.18.3)，如下图所示:</p>
 
 <p><img src="/images/reverse-proxy-net.png" alt="reverse-proxy-net.png" /></p>
@@ -123,105 +156,51 @@
 
 </div>
 
+<div class="meta">
+	
+</div>
+</article>
 
-
-<div class="post-single">
-  <div class="post-meta">
-    
-
-<span class="categories">
-  Categories:
-  
-    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/misc/'>misc</a>
-  
-</span>
-
-
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://youngtrips.github.io/logit/blog/2013/05/31/reverse-proxy/" data-via="" data-counturl="http://youngtrips.github.io/logit/blog/2013/05/31/reverse-proxy/" >Tweet</a>
-  
-  
-  
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
 </div>
 
-    
-  </div>
-  <div class="clear"></div>
 
-  
-    <div id="comments">
-      <h2>Comments</h1>
-      <div id="disqus_thread" aria-live="polite"></div>
-    </div>
-  
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
- </div>
-    <div id="footer">
-  <div class="panels">
-    <div class="license">
-      <h2>License</h2>
-      <p>如非特别声明，本 Blog 的文章由 Tuz 创作，采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">知识共享署名-非商业性使用-相同方式共享 3.0 Unported 许可协议</a>进行许可。</p>
-    </div>
+</section>
 
-    <div class="posts">
-      <h2>Recent Posts</h2>
-      <ul>
-        
-          <li>
-            <a href="/blog/2013/10/10/game-ai-design/">游戏AI模块设计</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2013/06/24/ability-system-design/">技能脚本系统设计</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2013/06/03/lua-csv/">Parsing CSV files in Lua</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2013/05/31/reverse-proxy/">ssh+nginx反向代理访问内网Web Service</a>
-          </li>
-        
-          <li>
-            <a href="/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a>
-          </li>
-        
-      </ul>
     </div>
+    <footer id="footer">
+    <div style="display:inline">
+    Copyright &copy; 2014
 
-    <div class="douban">
-      <h2>Reading</h2>
-      
-        <p>Please set your Douban ID in _config.yml</p>
-      
-    </div>
-  </div>
-
-  <p class="powered">
-    Powered by <a href="http://octopress.org">Octopress</a> and <a href="https://github.com/iwinux/compbits">Compbits</a>
-  </p>
+    Tuz
+. Powered by <a href="http://octopress.org">Octopress</a> | 
+    Theme <a href="http://github.com/panks/fabric">fabric</a> by <a href="http://panks.me">Pankaj Kumar</a>
 </div>
 
-  </div> <!-- #wrapper end -->
 
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-34373738-1']);
-    _gaq.push(['_trackPageview']);
+    </footer>
+    <script src="/javascripts/fabric.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-  
 
 <script type="text/javascript">
       var disqus_shortname = 'logit';
@@ -240,21 +219,17 @@
 </script>
 
 
-  
-
-  
-
-  
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
 
 
+
+<!-- end toload --> 
+</div>
+</div>
+<script src="/javascripts/jquery.ui.totop.js" type="text/javascript"></script>
+<script type="text/javascript">
+/*<![CDATA[*/
+;(function($){$().UItoTop({easingType:'easeOutCirc'});})(jQuery); 
+/*]]>*/
+</script><!-- remove it to remove the scroll to top button -->
 </body>
 </html>
