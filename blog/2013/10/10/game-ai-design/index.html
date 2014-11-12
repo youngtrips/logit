@@ -1,0 +1,363 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>游戏AI模块设计 - log(1)</title>
+	<meta name="author" content="Tuz">
+
+	
+	<meta name="description" content="游戏AI模块设计 概述 针对当前新的怪物AI需求，简化怪物AI脚本编写，提高怪物AI运行效率，抽象出AI框架结构，增强框架的灵活性及扩展性，同时能够让设计人员快速的开发怪物AI。 需求 相对之前的怪物AI，当前新怪物AI相对比较简单，主要是由移动、攻击等基本行为组成的。 AI实现方式 &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="log(1)" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://youngtrips.github.io/logit/blog/2013/10/10/game-ai-design/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-34373738-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("youngtrips@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/about/">About</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href="mailto:youngtrips@gmail.com" title="Email">Email</a>
+		
+		
+		
+		
+		
+			<a class="github" href="https://github.com/youngtrips" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">游戏AI模块设计</h1>
+	<div class="entry-content" itemprop="articleBody"><h3>概述</h3>
+
+<p>针对当前新的怪物AI需求，简化怪物AI脚本编写，提高怪物AI运行效率，抽象出AI框架结构，增强框架的灵活性及扩展性，同时能够让设计人员快速的开发怪物AI。</p>
+
+<h3>需求</h3>
+
+<p>相对之前的怪物AI，当前新怪物AI相对比较简单，主要是由移动、攻击等基本行为组成的。</p>
+
+<h3>AI实现方式</h3>
+
+<p>游戏中怪物AI的现有设计方法主要有：</p>
+
+<ol>
+<li>直接编码，或者给每个特定的怪物挂特定的脚本，当前我们游戏中很大一部分就是这样实现的；</li>
+<li>有限状态机(FSM)， 怪物在若干个状态中根据游戏世界中产生的特定事件产生特定的游戏行为，同时怪物进入新的状态；</li>
+<li>行为树(Behavior Tree)，怪物AI由若干个类型节点组成的树形结构，每个节点含有前置条件，当前置条件满足时执行该节点；</li>
+</ol>
+
+
+<p>由于直接给每个怪物挂脚本的形式对于AI开发人员来说工作量繁琐，并且容易造成重复性劳动，下面主要阐述下有限状态机及行为树。</p>
+
+<h4>有限状态机</h4>
+
+<p>有限状态机（finite-state machine， 缩写： FSM）又称有限状态自动机，简称状态机，是表示有限个状态以及在这些状态之间的转移和动作等行为的数学模型，一个有限状态机可以用一个关系式描述:</p>
+
+<pre><code>State(S) x Event(E) -&gt; Action(A), State(NS)
+</code></pre>
+
+<p>这些关系解析如下：如果我们处于状态S并且事件E发生了，那么我们需要执行动作A，并且状态转换为NS。</p>
+
+<p>当前游戏中怪物AI很大部分是基于FSM实现的，例如一个巡逻小怪的AI可以表示为:</p>
+
+<p><img src="/images/game-ai-design/fsm.png" alt="FSM" /></p>
+
+<h4>行为树</h4>
+
+<p>行为树(Behavior Tree, <a href="http://en.wikipedia.org/wiki/Behavior_tree">see</a>)，顾名思义，它是由若干个子节点组成的树形结构，如下图所示:</p>
+
+<p><img src="/images/game-ai-design/behavior_tree_1.png" alt="BehaviorTreeExample" /></p>
+
+<p>其中叶子节点为行为节点，行为节点是游戏相关的，不同的游戏可以定义不同的行为节点，行为节点通常分为两种允许状态:</p>
+
+<ol>
+<li>运行中(Running)，该行为还在处理中;</li>
+<li>完成(Finished)，该行为处理完成；</li>
+</ol>
+
+
+<p>其余节点是控制节点, 我们可以为行为树定义各种各样的控制节点（这也是行为树有意思的地方之一），一般来说，常用的控制节点有以下三种</p>
+
+<ol>
+<li>选择(Selector), 选择其子节点的某一个执行;</li>
+<li>序列(Sequence), 将其所有子节点依次执行, 也就是说当前一个返回&#8221;完成&#8221;状态后，再运行先一个子节点;</li>
+<li>并行(Parallel), 将其所有子节点都运行一遍;</li>
+</ol>
+
+
+<p>当AI决策时从树的根节点自顶向下(depth-first search)，通过一些条件搜索这棵树，最终确定需要的行为（叶子节点），并执行相应动作。</p>
+
+<p><strong>行为树实现</strong></p>
+
+<pre><code>Task = {
+    update = function(args) end,
+    on_enter = function(args) end,
+    on_exit = function(args) end,
+}
+BehaviorNode = {
+    nodes = {},
+    status = 0,
+    task = nil,
+    tick = function(args)
+        return task:update(args)
+    end,
+}
+BehaviorTree = {
+    object = nil,
+    root = nil,
+    tick = function(args)
+        if root then
+            root:tick(args)
+        end
+    end,
+}
+</code></pre>
+
+<p>之前巡逻小怪AI用行为树可以表示为:</p>
+
+<p><img src="/images/game-ai-design/behavior_tree_2.png" alt="behavior_tree_2" /></p>
+
+<p><strong>如何选择子节点</strong></p>
+
+<p>如何从子节点中选择呢？选择的依据是什么呢？这里就要引入另一个概念，一般称之为前置条件或者前提（Precondition），每一个节点，不管是行为节点还是控制节点，都会包含一个前提的部分，如下所示:</p>
+
+<pre><code>-- lua code
+local behavior_node = {
+    precondition = function() return true end,
+    action = function()
+        -- do something
+    end,
+}
+</code></pre>
+
+<p>当自顶向下搜索行为树时，依次测试每个子节点的前提，如果满足则进入该子节点，以此继续选择下一个节点，最终返回某个行为节点，所以当前行为节点的前提可以表示为:</p>
+
+<pre><code>Precondition[CurrNode] = Precondition[CurrNode.Parent] and Precondition[CurrNode.Parent.Parent] and ... and Precondition[RootNode]
+</code></pre>
+
+<p>行为树就是通过行为节点，控制节点，以及每个节点上的前提，把整个AI的决策逻辑描述了出来，对于每次的Tick，可以用如下的流程来描述：</p>
+
+<pre><code>action = root.FindNextAction(input)
+if action is not empty then
+    action.Execute(request,  input)  --request是输出的请求
+else
+    print "no action is available"
+end
+</code></pre>
+
+<p>与有限状态机比起来，行为树结构还是比较简单的，而且当从概念上来说，行为树还是比较简单的，但对AI程序员来说，却是充满了吸引力，它的一些特性，比如可视化的决策逻辑，可复用的控制节点，逻辑和实现的低耦合等，较之传统的状态机，都是可以大大帮助我们迅速而便捷的组织我们的行为决策。根据行为树的可视化的决策逻辑的特性可以开发出类似流程图绘制的编辑器，通过拖拽的方式定制怪物AI逻辑、编写各个节点的前提脚步及行为节点的游戏逻辑，同时能够导出lua脚本。</p>
+
+<p>关于行为树更加详细的解释见<a href="http://www.aisharing.com/archives/90">这里</a></p>
+
+<p><strong>目前使用行为树的游戏</strong></p>
+
+<ol>
+<li>Halo 3 &amp; ODST</li>
+<li>League of Legends <a href="/assets/upload/Woo_Andrew_PuttingThePlaneTogetherMidair.pdf">参考幻灯片</a></li>
+</ol>
+
+
+<h3>AI模块设计</h3>
+
+<p>AI模块作为一个黑盒，依赖特定的输入进行决策再输出特定的请求，整体结构如下图所示:</p>
+
+<p><img src="/images/game-ai-design/ai_module.png" alt="AI Module" /></p>
+
+<ul>
+<li>INPUT，AI输入数据，由游戏中产生的各种事件构成，主要有:
+
+<ol>
+<li> 碰撞事件</li>
+<li> 技能事件</li>
+</ol>
+</li>
+<li>AI Module，由行为树组成的AI决策模块；</li>
+<li>AI输出，AI决策结果，主要有:
+
+<ol>
+<li> 移动: 请求移动模块移动到目标点</li>
+<li> 技能模块: 通过creature:use_skill(args)直接使用技能</li>
+</ol>
+</li>
+</ul>
+
+
+<h3>Lua脚本集成</h3>
+
+<p>行为树每个节点的前提(Precondition)，进入、退出、动作等是游戏相关性的，将这些与游戏逻辑紧密相关的部分使用lua脚本实现，每个行为树节点表示为：</p>
+
+<pre><code>follow_base = {
+    precondition = function()
+        -- check condition
+    end,
+    behavior = function()
+        -- do something
+    end,
+    on_enter = function()
+        -- do something
+    end,
+    on_exit = function()
+        -- do something
+    end,
+}
+</code></pre>
+
+<h3>行为树编辑器</h3>
+
+<p>实现类似如下可视化AI行为树编辑器:</p>
+
+<ol>
+<li>From &ldquo;Three Ways of Cultivating Game AI&rdquo;
+ <img src="/images/game-ai-design/editor1.png" alt="BehaviorEditor1" /></li>
+<li>A plugin for Unity Editor
+ <img src="/images/game-ai-design/editor2.png" alt="BehaviorEditor2" /></li>
+<li>CryENGINE 3
+ <img src="/images/game-ai-design/editor3.png" alt="BehaviorEditor3" /></li>
+</ol>
+
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2014
+
+    Tuz
+
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+		</div>
+	</div>
+	
+
+<script type="text/javascript">
+      var disqus_shortname = 'logit';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://youngtrips.github.io/logit/blog/2013/10/10/game-ai-design/';
+        var disqus_url = 'http://youngtrips.github.io/logit/blog/2013/10/10/game-ai-design/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>
