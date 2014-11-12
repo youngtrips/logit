@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: 
-
-Sitemap: http://youngtrips.github.io//github/sitemap.xml 
