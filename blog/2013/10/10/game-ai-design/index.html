@@ -19,13 +19,13 @@
 
   
   <link rel="canonical" href="http://youngtrips.github.io/logit/blog/2013/10/10/game-ai-design">
-  <link href="/logit/favicon.png" rel="icon">
-  <link href="/logit/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="log(1)" type="application/atom+xml">
-  <script src="/logit/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/logit/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -48,7 +48,7 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/logit/">log(1)</a></h1>
+  <h1><a href="/">log(1)</a></h1>
   
     <h2>somewhere to keep mind</h2>
   
@@ -68,8 +68,8 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/logit/">Blog</a></li>
-  <li><a href="/logit/blog/archives">Archives</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
 </ul>
 
 </nav>
@@ -128,13 +128,13 @@
 
 <p>当前游戏中怪物AI很大部分是基于FSM实现的，例如一个巡逻小怪的AI可以表示为:</p>
 
-<p><img src="/logit/images/game-ai-design/fsm.png" alt="FSM" /></p>
+<p><img src="/images/game-ai-design/fsm.png" alt="FSM" /></p>
 
 <h4>行为树</h4>
 
 <p>行为树(Behavior Tree, <a href="http://en.wikipedia.org/wiki/Behavior_tree">see</a>)，顾名思义，它是由若干个子节点组成的树形结构，如下图所示:</p>
 
-<p><img src="/logit/images/game-ai-design/behavior_tree_1.png" alt="BehaviorTreeExample" /></p>
+<p><img src="/images/game-ai-design/behavior_tree_1.png" alt="BehaviorTreeExample" /></p>
 
 <p>其中叶子节点为行为节点，行为节点是游戏相关的，不同的游戏可以定义不同的行为节点，行为节点通常分为两种允许状态:</p>
 
@@ -183,7 +183,7 @@ BehaviorTree = {
 
 <p>之前巡逻小怪AI用行为树可以表示为:</p>
 
-<p><img src="/logit/images/game-ai-design/behavior_tree_2.png" alt="behavior_tree_2" /></p>
+<p><img src="/images/game-ai-design/behavior_tree_2.png" alt="behavior_tree_2" /></p>
 
 <p><strong>如何选择子节点</strong></p>
 
@@ -221,7 +221,7 @@ end
 
 <ol>
 <li>Halo 3 &amp; ODST</li>
-<li>League of Legends <a href="/logit/assets/upload/Woo_Andrew_PuttingThePlaneTogetherMidair.pdf">参考幻灯片</a></li>
+<li>League of Legends <a href="/assets/upload/Woo_Andrew_PuttingThePlaneTogetherMidair.pdf">参考幻灯片</a></li>
 </ol>
 
 
@@ -229,7 +229,7 @@ end
 
 <p>AI模块作为一个黑盒，依赖特定的输入进行决策再输出特定的请求，整体结构如下图所示:</p>
 
-<p><img src="/logit/images/game-ai-design/ai_module.png" alt="AI Module" /></p>
+<p><img src="/images/game-ai-design/ai_module.png" alt="AI Module" /></p>
 
 <ul>
 <li>INPUT，AI输入数据，由游戏中产生的各种事件构成，主要有:
@@ -276,11 +276,11 @@ end
 
 <ol>
 <li>From &ldquo;Three Ways of Cultivating Game AI&rdquo;
- <img src="/logit/images/game-ai-design/editor1.png" alt="BehaviorEditor1" /></li>
+ <img src="/images/game-ai-design/editor1.png" alt="BehaviorEditor1" /></li>
 <li>A plugin for Unity Editor
- <img src="/logit/images/game-ai-design/editor2.png" alt="BehaviorEditor2" /></li>
+ <img src="/images/game-ai-design/editor2.png" alt="BehaviorEditor2" /></li>
 <li>CryENGINE 3
- <img src="/logit/images/game-ai-design/editor3.png" alt="BehaviorEditor3" /></li>
+ <img src="/images/game-ai-design/editor3.png" alt="BehaviorEditor3" /></li>
 </ol>
 
 </div>
@@ -315,7 +315,7 @@ end
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/logit/blog/2013/06/24/ability-system-design/" title="Previous Post: 技能脚本系统设计">&laquo; 技能脚本系统设计</a>
+        <a class="basic-alignment left" href="/blog/2013/06/24/ability-system-design/" title="Previous Post: 技能脚本系统设计">&laquo; 技能脚本系统设计</a>
       
       
     </p>
@@ -337,23 +337,23 @@ end
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/logit/blog/2013/10/10/game-ai-design/">游戏AI模块设计</a>
+        <a href="/blog/2013/10/10/game-ai-design/">游戏AI模块设计</a>
       </li>
     
       <li class="post">
-        <a href="/logit/blog/2013/06/24/ability-system-design/">技能脚本系统设计</a>
+        <a href="/blog/2013/06/24/ability-system-design/">技能脚本系统设计</a>
       </li>
     
       <li class="post">
-        <a href="/logit/blog/2013/06/03/lua-csv/">Parsing CSV Files in Lua</a>
+        <a href="/blog/2013/06/03/lua-csv/">Parsing CSV Files in Lua</a>
       </li>
     
       <li class="post">
-        <a href="/logit/blog/2013/05/31/reverse-proxy/">ssh+nginx反向代理访问内网Web Service</a>
+        <a href="/blog/2013/05/31/reverse-proxy/">ssh+nginx反向代理访问内网Web Service</a>
       </li>
     
       <li class="post">
-        <a href="/logit/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a>
+        <a href="/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a>
       </li>
     
   </ul>
@@ -385,7 +385,7 @@ end
         });
     });
   </script>
-  <script src="/logit/javascripts/github.js" type="text/javascript"> </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
