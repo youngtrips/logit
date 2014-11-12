@@ -4,11 +4,11 @@
   <title><![CDATA[log(1)]]></title>
   <link href="http://youngtrips.github.io/logit/atom.xml" rel="self"/>
   <link href="http://youngtrips.github.io/logit/"/>
-  <updated>2014-11-12T20:40:27+08:00</updated>
+  <updated>2014-11-12T20:53:41+08:00</updated>
   <id>http://youngtrips.github.io/logit/</id>
   <author>
     <name><![CDATA[Tuz]]></name>
-    <email><![CDATA[youngtrips@gmail.com]]></email>
+    
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
@@ -821,7 +821,7 @@ end
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Parsing CSV Files in Lua]]></title>
+    <title type="html"><![CDATA[Parsing CSV files in Lua]]></title>
     <link href="http://youngtrips.github.io/logit/blog/2013/06/03/lua-csv/"/>
     <updated>2013-06-03T16:14:00+08:00</updated>
     <id>http://youngtrips.github.io/logit/blog/2013/06/03/lua-csv</id>
@@ -981,7 +981,7 @@ end
     <link href="http://youngtrips.github.io/logit/blog/2013/05/29/ability-analyze-report/"/>
     <updated>2013-05-29T16:49:00+08:00</updated>
     <id>http://youngtrips.github.io/logit/blog/2013/05/29/ability-analyze-report</id>
-    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#x6f;&#58;&#121;&#111;&#x75;&#110;&#x67;&#x74;&#114;&#x69;&#x70;&#x73;&#x40;&#x6d;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#x6d;">&#121;&#111;&#x75;&#110;&#x67;&#116;&#x72;&#105;&#112;&#x73;&#x40;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>)
+    <content type="html"><![CDATA[<p><strong>Author</strong>: Tuz (<a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#121;&#111;&#x75;&#110;&#x67;&#x74;&#114;&#105;&#x70;&#115;&#x40;&#109;&#97;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#x79;&#x6f;&#x75;&#110;&#103;&#x74;&#x72;&#105;&#x70;&#115;&#x40;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;</a>)
 <br>
 <strong>Date</strong>: 05.20.2013</p>
 
