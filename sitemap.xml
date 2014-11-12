@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -14,48 +13,3 @@
     <priority>1.0</priority>
   </url>
 </urlset>
-=======
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/05/29/ability-analyze-report/</loc>
-        <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/05/31/reverse-proxy/</loc>
-        <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/06/03/lua-csv/</loc>
-        <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/06/24/ability-system-design/</loc>
-        <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/2013/10/10/game-ai-design/</loc>
-        <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/archives/</loc>
-        <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/blog/categories/</loc>
-        <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/</loc>
-        <lastmod>2014-05-16T01:06:50+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/robots.txt</loc>
-        <lastmod>2014-05-12T22:47:23+08:00</lastmod>
-    </url>
-    <url>
-        <loc>http://youngtrips.github.io/logit/about/</loc>
-        <lastmod>2014-05-16T01:36:35+08:00</lastmod>
-    </url>
-</urlset>
->>>>>>> d53f4828b1650d481abf49f84112aec80609da06

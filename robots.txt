@@ -1,8 +1,4 @@
 User-agent: *
 Disallow: 
 
-<<<<<<< HEAD
 Sitemap: http://youngtrips.github.io//github/sitemap.xml 
-=======
-Sitemap: http://youngtrips.github.io/logit/sitemap.xml 
->>>>>>> d53f4828b1650d481abf49f84112aec80609da06
