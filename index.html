@@ -1,105 +1,113 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>log(1)</title>
-  <meta name="author" content="Tuz">
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>somewhere to keep mind  | log(1)</title>
 
-  
-  <meta name="description" content="概述 针对当前新的怪物AI需求，简化怪物AI脚本编写，提高怪物AI运行效率，抽象出AI框架结构，增强框架的灵活性及扩展性，同时能够让设计人员快速的开发怪物AI。 需求 相对之前的怪物AI，当前新怪物AI相对比较简单，主要是由移动、攻击等基本行为组成的。 AI实现方式 &hellip;">
-  
+<meta name="author" content="Tuz"> 
 
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="概述 针对当前新的怪物AI需求，简化怪物AI脚本编写，提高怪物AI运行效率，抽象出AI框架结构，增强框架的灵活性及扩展性，同时能够让设计人员快速的开发怪物AI。 需求 相对之前的怪物AI，当前新怪物AI相对比较简单，主要是由移动、攻击等基本行为组成的。 AI实现方式 &hellip;"> <meta name="keywords" content="">
 
-  
-  <link rel="canonical" href="http://logit.me/logit">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="log(1)" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-34373738-1']);
-    _gaq.push(['_trackPageview']);
+	<link href="/atom.xml" rel="alternate" title="log(1)" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
 
+          if (id) {
+            el = $('#' + id);
 
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">log(1)</a></h1>
-  
-    <h2>somewhere to keep mind</h2>
-  
-</hgroup>
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">log(1)</a></h1>
+<h4>somewhere to keep mind</h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="https://www.google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:logit.me/logit">
+			</form>
+		</div>
+	</div>
+</nav>
+
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:logit.me/logit" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/10/game-ai-design/">游戏AI模块设计</a></h1>
-    
-    
-      <p class="meta">
-        
+	<div id="content" class="inner">
 
 
-
-
-<time class='entry-date' datetime='2013-10-10T11:11:00+08:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>11:11 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>概述</h3>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/10/10/game-ai-design/">
+		
+			游戏AI模块设计</a>
+	</h2>
+	<div class="entry-content">
+		<h3>概述</h3>
 
 <p>针对当前新的怪物AI需求，简化怪物AI脚本编写，提高怪物AI运行效率，抽象出AI框架结构，增强框架的灵活性及扩展性，同时能够让设计人员快速的开发怪物AI。</p>
 
@@ -286,35 +294,42 @@ end
  <img src="/images/game-ai-design/editor3.png" alt="BehaviorEditor3" /></li>
 </ol>
 
-</div>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/24/ability-system-design/">技能脚本系统设计</a></h1>
-    
-    
-      <p class="meta">
-        
+<time datetime="2013-10-10T11:11:00+08:00" pubdate data-updated="true"></time></div>
+	
 
 
+	
+</div></article>
 
 
-<time class='entry-date' datetime='2013-06-24T08:59:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>8:59 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>概述</h3>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/06/24/ability-system-design/">
+		
+			技能脚本系统设计</a>
+	</h2>
+	<div class="entry-content">
+		<h3>概述</h3>
 
 <p>针对现有技能系统发送消息过大, C++和lua交互频繁, 客户端功能服务器化, 触发器抽象粒度太小, 数据更新同步等问题进行脚本系统重构优化. 通过分析现有技能实现抽象出技能框架(技能引擎), 实现控制基本技能流程, 同时加入事件进制, 如攻击, 受伤等事件, 进而希望能够丰富技能同时使天赋的实现比较优雅.</p>
 
@@ -918,35 +933,42 @@ end
 <li>其余功能脚本(副本, 任务相关)管理;</li>
 </ol>
 
-</div>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
   
-  
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/06/03/lua-csv/">Parsing CSV Files in Lua</a></h1>
-    
-    
-      <p class="meta">
-        
+<time datetime="2013-06-24T08:59:00+08:00" pubdate data-updated="true"></time></div>
+	
 
 
+	
+</div></article>
 
 
-<time class='entry-date' datetime='2013-06-03T16:14:00+08:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>4:14 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>code snippet for parsing csv files in lua, mark it(from <a href="http://lua-users.org/wiki/LuaCsv">http://lua-users.org/wiki/LuaCsv</a>):</p>
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/06/03/lua-csv/">
+		
+			Parsing CSV Files in Lua</a>
+	</h2>
+	<div class="entry-content">
+		<p>code snippet for parsing csv files in lua, mark it(from <a href="http://lua-users.org/wiki/LuaCsv">http://lua-users.org/wiki/LuaCsv</a>):</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1030,35 +1052,48 @@ end
 
 
 
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-03T16:14:00+08:00" pubdate data-updated="true"></time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/lua/'>lua</a>
+
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/31/reverse-proxy/">ssh+nginx反向代理访问内网Web Service</a></h1>
-    
-    
-      <p class="meta">
-        
+	
+</div></article>
 
 
-
-
-<time class='entry-date' datetime='2013-05-31T14:14:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2013</span></span> <span class='time'>2:14 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>在一般的网络环境下，互联网无法直接访问到局域网的计算机，如果你想在家里访问公司局域网的计算机或者在公司想访问家里的计算机，那么需要借助特定的工具，这里以ssh+nginx反向代理访问局域网计算机的web服务器为例。
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/05/31/reverse-proxy/">
+		
+			ssh+nginx反向代理访问内网Web Service</a>
+	</h2>
+	<div class="entry-content">
+		<p>在一般的网络环境下，互联网无法直接访问到局域网的计算机，如果你想在家里访问公司局域网的计算机或者在公司想访问家里的计算机，那么需要借助特定的工具，这里以ssh+nginx反向代理访问局域网计算机的web服务器为例。
 假定你有一台具有公网IP的服务器S1(211.83.241.83)以及一台在局域网开启web服务的计算机S2(172.16.18.3)，如下图所示:</p>
 
 <p><img src="/images/reverse-proxy-net.png" alt="reverse-proxy-net.png" /></p>
@@ -1114,35 +1149,48 @@ end
 </span><span class='line'>    }</span></code></pre></td></tr></table></div></figure></p></li>
 </ol>
 
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-31T14:14:00+08:00" pubdate data-updated="true"></time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/misc/'>misc</a>
+
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a></h1>
-    
-    
-      <p class="meta">
-        
+	
+</div></article>
 
 
-
-
-<time class='entry-date' datetime='2013-05-29T16:49:00+08:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>4:49 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Author</strong>: Tuz (<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#x79;&#x6f;&#117;&#x6e;&#x67;&#116;&#114;&#105;&#x70;&#x73;&#x40;&#x6d;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#121;&#111;&#117;&#x6e;&#103;&#116;&#114;&#x69;&#112;&#x73;&#64;&#x6d;&#97;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a>)
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/05/29/ability-analyze-report/">
+		
+			技能脚本系统实现分析</a>
+	</h2>
+	<div class="entry-content">
+		<p><strong>Author</strong>: Tuz (<a href="&#x6d;&#x61;&#105;&#x6c;&#116;&#x6f;&#58;&#121;&#x6f;&#x75;&#x6e;&#103;&#116;&#114;&#x69;&#112;&#115;&#x40;&#x6d;&#97;&#x69;&#108;&#x2e;&#x63;&#111;&#x6d;">&#x79;&#x6f;&#117;&#x6e;&#x67;&#116;&#114;&#105;&#x70;&#115;&#x40;&#x6d;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>)
 <br>
 <strong>Date</strong>: 05.20.2013</p>
 
@@ -1604,93 +1652,58 @@ end
 <p>  <img src="/images/ability-analyze-report/gis_sheng_b3.png" alt="gis_sheng_b3" /></p></li>
 </ul>
 
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-29T16:49:00+08:00" pubdate data-updated="true"></time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/game/'>game</a>
+
 </div>
-  
-  
 
 
-    </article>
-  
-  <div class="pagination">
+	
+</div></article>
+
+<nav id="pagenavi">
     
-    <a href="/blog/archives">Blog Archives</a>
     
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/10/10/game-ai-design/">游戏AI模块设计</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/24/ability-system-design/">技能脚本系统设计</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/06/03/lua-csv/">Parsing CSV Files in Lua</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/31/reverse-proxy/">ssh+nginx反向代理访问内网Web Service</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/05/29/ability-analyze-report/">技能脚本系统实现分析</a>
-      </li>
-    
-  </ul>
-</section>
+    <div class="center"><a href="/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2015
 
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/youngtrips">@youngtrips</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
+    Tuz
 
-        github.showRepos({
-            user: 'youngtrips',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Tuz -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
+<br>
+Powered by Octopress.
 </footer>
-  
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
 
 <script type="text/javascript">
       var disqus_shortname = 'logit';
@@ -1707,21 +1720,17 @@ end
 
 
 
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-34373738-1']);
+		_gaq.push(['_trackPageview']);
 
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
 
 
 

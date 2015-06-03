@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Lua | log(1)]]></title>
+  <title><![CDATA[Category: lua | log(1)]]></title>
   <link href="http://logit.me/logit/blog/categories/lua/atom.xml" rel="self"/>
   <link href="http://logit.me/logit/"/>
-  <updated>2015-06-03T10:08:06+08:00</updated>
+  <updated>2015-06-03T10:24:05+08:00</updated>
   <id>http://logit.me/logit/</id>
   <author>
     <name><![CDATA[Tuz]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Parsing CSV Files in Lua]]></title>
+    <title type="html"><![CDATA[Parsing CSV files in Lua]]></title>
     <link href="http://logit.me/logit/blog/2013/06/03/lua-csv/"/>
     <updated>2013-06-03T16:14:00+08:00</updated>
     <id>http://logit.me/logit/blog/2013/06/03/lua-csv</id>

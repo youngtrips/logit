@@ -21,10 +21,16 @@
     <lastmod>2013-05-29T16:49:00+08:00</lastmod>
   </url>
   <url>
-    <loc>http://logit.me/logit/blog/archives/</loc>
+    <loc>http://logit.me/logit/archives/</loc>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/</loc>
   </url>
   <url>
     <loc>http://logit.me/logit/</loc>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/archives/</loc>
   </url>
   <url>
     <loc>http://logit.me/logit/search.html</loc>

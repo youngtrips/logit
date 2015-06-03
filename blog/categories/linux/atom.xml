@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Linux | log(1)]]></title>
+  <title><![CDATA[Category: linux | log(1)]]></title>
   <link href="http://logit.me/logit/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://logit.me/logit/"/>
-  <updated>2015-06-03T10:08:06+08:00</updated>
+  <updated>2015-06-03T10:24:05+08:00</updated>
   <id>http://logit.me/logit/</id>
   <author>
     <name><![CDATA[Tuz]]></name>
