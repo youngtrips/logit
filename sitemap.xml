@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://logit.me/logit/blog/2013/10/10/game-ai-design/</loc>
+    <lastmod>2013-10-10T11:11:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/2013/06/24/ability-system-design/</loc>
+    <lastmod>2013-06-24T08:59:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/2013/06/03/lua-csv/</loc>
+    <lastmod>2013-06-03T16:14:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/2013/05/31/reverse-proxy/</loc>
+    <lastmod>2013-05-31T14:14:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/2013/05/29/ability-analyze-report/</loc>
+    <lastmod>2013-05-29T16:49:00+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/archives/</loc>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/</loc>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/search.html</loc>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/categories/game/</loc>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/categories/linux/</loc>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/categories/misc/</loc>
+  </url>
+  <url>
+    <loc>http://logit.me/logit/blog/categories/lua/</loc>
+  </url>
+</urlset>

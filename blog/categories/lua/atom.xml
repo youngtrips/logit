@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Lua | log(1)]]></title>
+  <link href="http://logit.me/logit/blog/categories/lua/atom.xml" rel="self"/>
+  <link href="http://logit.me/logit/"/>
+  <updated>2015-06-03T10:05:44+08:00</updated>
+  <id>http://logit.me/logit/</id>
+  <author>
+    <name><![CDATA[Tuz]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Parsing CSV Files in Lua]]></title>
+    <link href="http://logit.me/logit/blog/2013/06/03/lua-csv/"/>
+    <updated>2013-06-03T16:14:00+08:00</updated>
+    <id>http://logit.me/logit/blog/2013/06/03/lua-csv</id>
+    <content type="html"><![CDATA[<p>code snippet for parsing csv files in lua, mark it(from <a href="http://lua-users.org/wiki/LuaCsv">http://lua-users.org/wiki/LuaCsv</a>):</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='lua'><span class='line'><span class="k">function</span> <span class="nf">ParseCSVLine</span> <span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">sep</span><span class="p">)</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="kd">local</span> <span class="n">pos</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="n">sep</span> <span class="o">=</span> <span class="n">sep</span> <span class="ow">or</span> <span class="err">&amp;</span><span class="n">lsquo</span><span class="p">;,</span><span class="err">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">while</span> <span class="kc">true</span> <span class="k">do</span>
+</span><span class='line'>        <span class="kd">local</span> <span class="n">c</span> <span class="o">=</span> <span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">pos</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;)</span> <span class="k">then</span> <span class="k">break</span> <span class="k">end</span>
+</span><span class='line'>        <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="err">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="k">then</span>
+</span><span class='line'>            <span class="err">&amp;</span><span class="n">ndash</span><span class="p">;</span> <span class="n">quoted</span> <span class="n">value</span> <span class="p">(</span><span class="n">ignore</span> <span class="n">separator</span> <span class="n">within</span><span class="p">)</span>
+</span><span class='line'>            <span class="kd">local</span> <span class="n">txt</span> <span class="o">=</span> <span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span>
+</span><span class='line'>            <span class="k">repeat</span>
+</span><span class='line'>                <span class="kd">local</span> <span class="n">startp</span><span class="p">,</span><span class="n">endp</span> <span class="o">=</span> <span class="nb">string.find</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="err">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="o">^%</span><span class="n">b</span><span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">rsquo</span><span class="p">;,</span><span class="n">pos</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">txt</span> <span class="o">=</span> <span class="n">txt</span><span class="o">..</span><span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">startp</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">endp</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>                <span class="n">pos</span> <span class="o">=</span> <span class="n">endp</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>                <span class="n">c</span> <span class="o">=</span> <span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">pos</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">if</span> <span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="err">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">rsquo</span><span class="p">;)</span> <span class="k">then</span> <span class="n">txt</span> <span class="o">=</span> <span class="n">txt</span><span class="o">..</span><span class="err">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="k">end</span>
+</span><span class='line'>                <span class="err">&amp;</span><span class="n">ndash</span><span class="p">;</span> <span class="n">check</span> <span class="n">first</span> <span class="n">char</span> <span class="n">AFTER</span> <span class="n">quoted</span> <span class="n">string</span><span class="p">,</span> <span class="k">if</span> <span class="n">it</span> <span class="n">is</span> <span class="n">another</span>
+</span><span class='line'>                <span class="err">&amp;</span><span class="n">ndash</span><span class="p">;</span> <span class="n">quoted</span> <span class="n">string</span> <span class="n">without</span> <span class="n">separator</span><span class="p">,</span> <span class="k">then</span> <span class="n">append</span> <span class="n">it</span>
+</span><span class='line'>                <span class="err">&amp;</span><span class="n">ndash</span><span class="p">;</span> <span class="n">this</span> <span class="n">is</span> <span class="n">the</span> <span class="n">way</span> <span class="n">to</span> <span class="s2">&quot;</span><span class="s">escape&amp;rdquo; the quote char in a quote. example:</span>
+</span><span class='line'>                <span class="err">&amp;</span><span class="n">ndash</span><span class="p">;</span>   <span class="n">value1</span><span class="p">,</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">blub</span><span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">blip</span><span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">boing</span><span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;,</span><span class="n">value3</span>  <span class="n">will</span> <span class="n">result</span> <span class="k">in</span> <span class="n">blub</span><span class="s2">&quot;</span><span class="s">blip&quot;</span><span class="n">boing</span>  <span class="k">for</span> <span class="n">the</span> <span class="n">middle</span>
+</span><span class='line'>            <span class="k">until</span> <span class="p">(</span><span class="n">c</span> <span class="o">~=</span> <span class="err">&amp;</span><span class="n">lsquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">rsquo</span><span class="p">;)</span>
+</span><span class='line'>            <span class="nb">table.insert</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">txt</span><span class="p">)</span>
+</span><span class='line'>            <span class="nb">assert</span><span class="p">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">sep</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">==</span> <span class="err">&amp;</span><span class="n">rdquo</span><span class="p">;</span><span class="err">&amp;</span><span class="n">ldquo</span><span class="p">;)</span>
+</span><span class='line'>            <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>        <span class="k">else</span>  <span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
+</span><span class='line'>            <span class="err">&amp;</span><span class="n">ndash</span><span class="p">;</span> <span class="n">no</span> <span class="n">quotes</span> <span class="n">used</span><span class="p">,</span> <span class="n">just</span> <span class="n">look</span> <span class="k">for</span> <span class="n">the</span> <span class="n">first</span> <span class="n">separator</span>
+</span><span class='line'>            <span class="kd">local</span> <span class="n">startp</span><span class="p">,</span><span class="n">endp</span> <span class="o">=</span> <span class="nb">string.find</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">sep</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">if</span> <span class="p">(</span><span class="n">startp</span><span class="p">)</span> <span class="k">then</span>
+</span><span class='line'>                <span class="nb">table.insert</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">pos</span><span class="p">,</span><span class="n">startp</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>                <span class="n">pos</span> <span class="o">=</span> <span class="n">endp</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span class='line'>            <span class="k">else</span>
+</span><span class='line'>                <span class="err">&amp;</span><span class="n">ndash</span><span class="p">;</span> <span class="n">no</span> <span class="n">separator</span> <span class="n">found</span> <span class="o">-&gt;</span> <span class="n">use</span> <span class="n">rest</span> <span class="n">of</span> <span class="n">string</span> <span class="ow">and</span> <span class="n">terminate</span>
+</span><span class='line'>                <span class="nb">table.insert</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="nb">string.sub</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">pos</span><span class="p">))</span>
+</span><span class='line'>                <span class="k">break</span>
+</span><span class='line'>            <span class="k">end</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">res</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>
