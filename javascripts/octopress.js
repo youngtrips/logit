@@ -12,7 +12,6 @@ function getNav() {
   });
 }
 
-<<<<<<< HEAD
 function addSidebarToggler() {
   if(!$('body').hasClass('sidebar-footer')) {
     $('#content').append('<span class="toggle-sidebar"></span>');
@@ -34,8 +33,6 @@ function addSidebarToggler() {
   if (sections.length >= 3){ $('aside.sidebar').addClass('thirds'); }
 }
 
-=======
->>>>>>> d7d8b2f31521d8be014a0fff70a26fba82e634eb
 function testFeatures() {
   var features = ['maskImage'];
   $(features).map(function(i, feature) {
@@ -113,12 +110,8 @@ $('document').ready(function() {
   wrapFlashVideos();
   flashVideoFallback();
   addCodeLineNumbers();
-<<<<<<< HEAD
   getNav();
   addSidebarToggler();
-=======
-  //getNav();
->>>>>>> d7d8b2f31521d8be014a0fff70a26fba82e634eb
 });
 
 // iOS scaling bug fix
